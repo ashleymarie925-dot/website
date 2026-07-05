@@ -403,7 +403,7 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
         <div class="per">per month, all in</div>
         <div class="breakdown" id="c-breakdown"></div>
         <a class="btn solid" href="sms:+19255509733?&body=Hi%20Ashley!%20I%20was%20playing%20with%20the%20calculator%20on%20your%20site.%20Can%20we%20talk%20about%20my%20numbers%3F">Like That Number? Text Me</a>
-        <div class="calc-note">Estimate only. Assumes 1.25% annual property taxes, $140/mo homeowners insurance and 0.50% annual mortgage insurance (waived with 20%+ down). Excludes HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
+        <div class="calc-note">Estimate only. Under 20% down assumes an FHA loan at 6% with 0.50% annual mortgage insurance. At 20%+ down assumes a conventional loan at 6.5% with no mortgage insurance. All scenarios include 1.25% annual property taxes and $140/mo homeowners insurance. Excludes HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
       </div>
     </div>
   </div>
@@ -413,8 +413,15 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
 (function(){
   const f = id => document.getElementById(id);
   const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+  let lastType = 'FHA';
   function calc(){
-    const price = +f('c-price').value, downPct = +f('c-down').value, rate = +f('c-rate').value, term = +f('c-term').value;
+    const downPctNow = +f('c-down').value;
+    const type = downPctNow >= 20 ? 'Conventional' : 'FHA';
+    if(type !== lastType){
+      f('c-rate').value = type === 'Conventional' ? 6.5 : 6;  // conventional assumes 6.5%, FHA 6%
+      lastType = type;
+    }
+    const price = +f('c-price').value, downPct = downPctNow, rate = +f('c-rate').value, term = +f('c-term').value;
     f('v-price').textContent = fmt(price);
     f('v-down').textContent = downPct + '%';
     f('v-rate').textContent = rate + '%';
@@ -427,6 +434,7 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
     const total = pi + tax + ins + mi;
     f('c-payment').textContent = fmt(total);
     f('c-breakdown').innerHTML =
+      '<strong style="color:var(--gold)">' + type + ' loan assumed</strong><br>' +
       'Principal &amp; interest: ' + fmt(pi) + '<br>' +
       'Property taxes: ' + fmt(tax) + ' · Insurance: ' + fmt(ins) + '<br>' +
       (mi > 0 ? 'Mortgage insurance: ' + fmt(mi) : 'No mortgage insurance (20%+ down)') + '<br>' +
