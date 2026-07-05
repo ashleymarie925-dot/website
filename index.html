@@ -103,6 +103,34 @@
   .svc h3{font-size:22px;margin-bottom:10px;color:var(--gold-soft)}
   .svc p{font-size:14px;color:var(--muted)}
 
+  /* Free Guide funnel */
+  .guide{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .guide-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:760px;margin:0 auto}
+  .g-item{background:var(--card);border:1px solid var(--line);padding:22px 26px;cursor:pointer;transition:border-color .25s}
+  .g-item:hover{border-color:var(--gold)}
+  .g-item h3{font-family:'Inter',sans-serif;font-weight:600;font-size:16.5px;color:var(--text);display:flex;gap:14px;align-items:baseline}
+  .g-item h3 .n{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:22px}
+  .g-item .locked{margin-top:8px;position:relative;overflow:hidden}
+  .g-item .locked p{font-size:13.5px;color:var(--muted);filter:blur(6px);user-select:none;pointer-events:none}
+  .g-item .locked::after{content:'\1F512  Click to unlock';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:0;transition:opacity .2s}
+  .g-item:hover .locked::after{opacity:1}
+  .guide.unlocked .g-item .locked p{filter:none;user-select:auto;pointer-events:auto}
+  .guide.unlocked .g-item .locked::after{display:none}
+  .guide-cta{text-align:center;margin-top:34px}
+  .guide-hook{display:inline-block;margin-top:16px;color:var(--gold);font-size:14px;border-bottom:1px dashed var(--gold);cursor:pointer}
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .modal-bg.open{display:flex}
+  .modal{background:var(--bg2);border:1px solid var(--gold);max-width:430px;width:100%;padding:38px 34px;position:relative}
+  .modal .close{position:absolute;top:12px;right:18px;font-size:22px;color:var(--muted);cursor:pointer;background:none;border:none}
+  .modal h3{font-size:26px;margin-bottom:8px}
+  .modal p.sub{color:var(--muted);font-size:13.5px;margin-bottom:22px}
+  .modal label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+  .modal input{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:12px 14px;font-size:15px;font-family:'Inter',sans-serif}
+  .modal input:focus{outline:none;border-color:var(--gold)}
+  .modal .btn{width:100%;margin-top:22px;text-align:center;cursor:pointer;font-family:'Inter',sans-serif}
+  .modal .fine{font-size:11px;color:#6b6862;margin-top:14px;text-align:center}
+
   /* Reviews */
   .reviews{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -160,6 +188,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Loan Options</a>
+      <a href="#guide">Free Guide</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
     </div>
@@ -218,6 +247,93 @@
     </div>
   </div>
 </section>
+
+<section class="guide" id="guide">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <div class="eyebrow">Free Buyer's Guide</div>
+      <h2>5 Things Every First-Time Homebuyer Should Know</h2>
+      <p style="color:var(--muted);margin-top:12px">We specialize in helping first-time homebuyers create a plan for homeownership. Even if you're not ready now, we help you get ready.</p>
+    </div>
+    <div class="guide-grid">
+      <div class="g-item" onclick="openGate()">
+        <h3><span class="n">01</span> You can buy a home with 0% to 5% down.</h3>
+        <div class="locked"><p>The 20% down myth costs buyers years of waiting. Only 7% of people know the truth about how little you actually need, including programs with...</p></div>
+      </div>
+      <div class="g-item" onclick="openGate()">
+        <h3><span class="n">02</span> Talk to a professional BEFORE trying to fix your credit.</h3>
+        <div class="locked"><p>I have watched people spend tens of thousands of dollars on credit repair that moved their score zero points. There is a soft-pull simulator that shows exactly...</p></div>
+      </div>
+      <div class="g-item" onclick="openGate()">
+        <h3><span class="n">03</span> Fall in love with the payment before the house.</h3>
+        <div class="locked"><p>You will love the $3,000,000 house. But will you love the monthly payment? Here is the order that protects you from heartbreak and...</p></div>
+      </div>
+      <div class="g-item" onclick="openGate()">
+        <h3><span class="n">04</span> Buy the house first. Then the car.</h3>
+        <div class="locked"><p>Every $50 in monthly payment can cost you $10,000 to $15,000 in buying power. That is the difference between one neighborhood and...</p></div>
+      </div>
+      <div class="g-item" onclick="openGate()">
+        <h3><span class="n">05</span> Self-employed? 1099? ITIN? You have options.</h3>
+        <div class="locked"><p>No tax returns showing income? There are products built specifically for business owners, plus grants and down payment assistance that...</p></div>
+      </div>
+    </div>
+    <div class="guide-cta">
+      <a class="btn solid" onclick="openGate()" style="cursor:pointer">Unlock The Free Guide</a>
+      <div><span class="guide-hook" onclick="openGate()">The 20% down myth has cost buyers millions. Don't let it cost you.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-bg" id="gateModal">
+  <div class="modal">
+    <button class="close" onclick="closeGate()">&times;</button>
+    <h3>Get instant access.</h3>
+    <p class="sub">Free guide, no spam, ever. Just the five things that save first-time buyers the most money.</p>
+    <form id="leadForm">
+      <label for="lf-name">Full Name</label>
+      <input id="lf-name" type="text" required autocomplete="name">
+      <label for="lf-email">Email</label>
+      <input id="lf-email" type="email" required autocomplete="email">
+      <label for="lf-phone">Phone Number</label>
+      <input id="lf-phone" type="tel" required autocomplete="tel">
+      <button class="btn solid" type="submit" id="lf-btn">Send Me The Guide</button>
+      <p class="fine">By submitting, you agree Ashley may contact you about your homebuying goals. Unsubscribe anytime.</p>
+    </form>
+    <div id="lf-done" style="display:none;text-align:center">
+      <p style="font-size:40px;margin:10px 0">&#127881;</p>
+      <p style="margin-bottom:18px">You're in! Your guide is opening now.</p>
+      <a class="btn solid" href="first-time-homebuyer-guide.pdf" target="_blank" rel="noopener">Open The Guide</a>
+      <p style="color:var(--muted);font-size:13px;margin-top:18px">Want to talk sooner? <a href="sms:+19255509733">Text me at (925) 550-9733</a>. I reply within 10 minutes.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const GFORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdLHZjHI-Zf3C9KunQ0Xnj9n6o2_4jsPLLhP3kRQF4IrVJ-tQ/formResponse';
+function openGate(){
+  if(localStorage.getItem('guideUnlocked')){ window.open('first-time-homebuyer-guide.pdf','_blank'); return; }
+  document.getElementById('gateModal').classList.add('open');
+}
+function closeGate(){ document.getElementById('gateModal').classList.remove('open'); }
+document.getElementById('leadForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.getElementById('lf-btn');
+  btn.textContent = 'Sending...';
+  const data = new FormData();
+  data.append('entry.897102919', document.getElementById('lf-name').value);
+  data.append('entry.1762529981', document.getElementById('lf-email').value);
+  data.append('entry.1245121359', document.getElementById('lf-phone').value);
+  fetch(GFORM, {method:'POST', mode:'no-cors', body:data}).finally(function(){
+    localStorage.setItem('guideUnlocked','1');
+    document.getElementById('leadForm').style.display = 'none';
+    document.getElementById('lf-done').style.display = 'block';
+    document.getElementById('guide').classList.add('unlocked');
+    window.open('first-time-homebuyer-guide.pdf','_blank');
+  });
+});
+if(localStorage.getItem('guideUnlocked')){ document.getElementById('guide').classList.add('unlocked'); }
+document.getElementById('gateModal').addEventListener('click', function(e){ if(e.target === this) closeGate(); });
+</script>
 
 <section class="reviews" id="reviews">
   <div class="wrap">
