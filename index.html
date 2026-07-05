@@ -103,6 +103,33 @@
   .svc h3{font-size:22px;margin-bottom:10px;color:var(--gold-soft)}
   .svc p{font-size:14px;color:var(--muted)}
 
+  /* Calculator */
+  .calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto;align-items:start}
+  .calc-inputs label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+  .calc-inputs label span{color:var(--gold);float:right;letter-spacing:0;text-transform:none;font-size:14px}
+  .calc-inputs input[type=range]{width:100%;accent-color:#c9a96a}
+  .calc-result{background:var(--card);border:1px solid var(--gold);padding:38px 34px;text-align:center;position:sticky;top:100px}
+  .calc-result .lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .calc-result .amount{font-family:'Cormorant Garamond',serif;font-size:58px;color:var(--gold);line-height:1.1;margin:8px 0}
+  .calc-result .per{color:var(--muted);font-size:13px;margin-bottom:8px}
+  .calc-result .breakdown{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:14px;line-height:2}
+  .calc-result .btn{margin-top:18px}
+  .calc-note{font-size:11px;color:#6b6862;margin-top:14px}
+  @media(max-width:820px){.calc-wrap{grid-template-columns:1fr}.calc-result{position:static}}
+
+  /* Sticky mobile CTA bar */
+  .mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(13,13,15,.97);border-top:1px solid var(--gold);padding:10px 12px;gap:10px}
+  .mobile-bar a{flex:1;text-align:center;padding:12px 4px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+  .mobile-bar .btn{padding:12px 4px}
+  @media(max-width:820px){.mobile-bar{display:flex}body{padding-bottom:64px}}
+
+  /* FAQ */
+  .faq-item{border:1px solid var(--line);background:var(--card);margin-bottom:12px;max-width:820px;margin-left:auto;margin-right:auto}
+  .faq-item summary{padding:20px 26px;cursor:pointer;font-weight:500;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .faq-item summary::after{content:'+';color:var(--gold);font-size:22px;font-weight:300}
+  .faq-item[open] summary::after{content:'\2212'}
+  .faq-item .a{padding:0 26px 22px;color:var(--muted);font-size:14px}
+
   /* Free Guide funnel */
   .guide{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .guide-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:760px;margin:0 auto}
@@ -188,6 +215,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Loan Options</a>
+      <a href="#calculator">Calculator</a>
       <a href="#guide">Free Guide</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
@@ -217,33 +245,32 @@
   </div>
 </header>
 
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="sec-head">
-      <div class="eyebrow">About Ashley</div>
-      <h2>I'll be with you every step of the way.</h2>
-    </div>
-    <div>
-      <p>Hello, my name is Ashley Gurevich! I stand out as a loan officer who blends expertise with empathy. I'm committed to the journey just as much as the destination, ensuring that you feel educated, confident, and ready to make one of life's biggest decisions.</p>
-      <p>My approach is both methodical and personal, providing a tailored experience that transforms the complex mortgage process into a smooth, stress-free endeavor. Whether it's your first home, a refinance, or a complex file that other lenders couldn't get done, I anticipate your needs and deliver results.</p>
-      <p>Based in Brentwood, California, and proudly serving clients throughout California, Washington, and Virginia.</p>
-    </div>
-  </div>
-</section>
-
-<section id="services">
+<section class="reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Loan Options</div>
-      <h2>Financing for every situation.</h2>
+      <div class="eyebrow">Client Reviews</div>
+      <h2>What clients are saying.</h2>
+      <div class="rating-banner"><span class="big">4.98</span><span style="color:var(--muted)">from 229 verified reviews</span></div>
     </div>
-    <div class="services-grid">
-      <div class="svc"><h3>Conventional Loans</h3><p>Competitive rates and flexible terms for purchases and refinances.</p></div>
-      <div class="svc"><h3>FHA Loans</h3><p>Lower down payments and flexible credit requirements for first-time buyers.</p></div>
-      <div class="svc"><h3>VA Loans</h3><p>Honoring those who served with $0-down financing and exclusive benefits.</p></div>
-      <div class="svc"><h3>Jumbo Loans</h3><p>Financing for higher-value homes beyond conventional limits.</p></div>
-      <div class="svc"><h3>Refinance</h3><p>Lower your rate, tap equity, or restructure your loan to fit your goals.</p></div>
-      <div class="svc"><h3>Specialty Programs</h3><p>Bank statement loans, bridge loans, investor financing &amp; down payment assistance.</p></div>
+    <div class="rev-grid">
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"I've worked with Ashley on numerous transactions over the years, and she has consistently delivered when other lenders couldn't. Bank statement loans, bridge loans, investor financing, or a complex file, she gets it done."</p>
+        <div class="who">Hayley H. · June 2026</div>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"I LOVE ASHLEY! I would do it again if I could do it with her! She was SO HELPFUL!"</p>
+        <div class="who">Jaleesa K. · Oakland, CA · May 2026</div>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"Ashley was very kind, patient and knowledgeable. She answered any doubts I had throughout the process."</p>
+        <div class="who">Marilyn N. · Pittsburg, CA · April 2026</div>
+      </div>
+    </div>
+    <div class="rev-cta">
+      <a class="btn" href="https://www.experience.com/reviews/ashley-gurevich-454089" target="_blank" rel="noopener">Read All 229 Reviews</a>
     </div>
   </div>
 </section>
@@ -335,35 +362,72 @@ if(localStorage.getItem('guideUnlocked')){ document.getElementById('guide').clas
 document.getElementById('gateModal').addEventListener('click', function(e){ if(e.target === this) closeGate(); });
 </script>
 
-<section class="reviews" id="reviews">
+<section id="services">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Client Reviews</div>
-      <h2>What clients are saying.</h2>
-      <div class="rating-banner"><span class="big">4.98</span><span style="color:var(--muted)">from 229 verified reviews</span></div>
+      <div class="eyebrow">Loan Options</div>
+      <h2>Financing for every situation.</h2>
     </div>
-    <div class="rev-grid">
-      <div class="rev">
-        <div class="stars">★★★★★</div>
-        <p>"I've worked with Ashley on numerous transactions over the years, and she has consistently delivered when other lenders couldn't. Bank statement loans, bridge loans, investor financing, or a complex file, she gets it done."</p>
-        <div class="who">Hayley H. · June 2026</div>
-      </div>
-      <div class="rev">
-        <div class="stars">★★★★★</div>
-        <p>"I LOVE ASHLEY! I would do it again if I could do it with her! She was SO HELPFUL!"</p>
-        <div class="who">Jaleesa K. · Oakland, CA · May 2026</div>
-      </div>
-      <div class="rev">
-        <div class="stars">★★★★★</div>
-        <p>"Ashley was very kind, patient and knowledgeable. She answered any doubts I had throughout the process."</p>
-        <div class="who">Marilyn N. · Pittsburg, CA · April 2026</div>
-      </div>
-    </div>
-    <div class="rev-cta">
-      <a class="btn" href="https://www.experience.com/reviews/ashley-gurevich-454089" target="_blank" rel="noopener">Read All 229 Reviews</a>
+    <div class="services-grid">
+      <div class="svc"><h3>Conventional Loans</h3><p>Competitive rates and flexible terms for purchases and refinances.</p></div>
+      <div class="svc"><h3>FHA Loans</h3><p>Lower down payments and flexible credit requirements for first-time buyers.</p></div>
+      <div class="svc"><h3>VA Loans</h3><p>Honoring those who served with $0-down financing and exclusive benefits.</p></div>
+      <div class="svc"><h3>Jumbo Loans</h3><p>Financing for higher-value homes beyond conventional limits.</p></div>
+      <div class="svc"><h3>Refinance</h3><p>Lower your rate, tap equity, or restructure your loan to fit your goals.</p></div>
+      <div class="svc"><h3>Specialty Programs</h3><p>Bank statement loans, bridge loans, investor financing &amp; down payment assistance.</p></div>
     </div>
   </div>
 </section>
+
+<section id="calculator">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <div class="eyebrow">Payment Calculator</div>
+      <h2>What would your payment look like?</h2>
+      <p style="color:var(--muted);margin-top:12px">Play with the numbers. Fall in love with the payment first, then let's find the house.</p>
+    </div>
+    <div class="calc-wrap">
+      <div class="calc-inputs">
+        <label>Home Price <span id="v-price">$500,000</span></label>
+        <input type="range" id="c-price" min="100000" max="2000000" step="10000" value="500000">
+        <label>Down Payment <span id="v-down">3.5%</span></label>
+        <input type="range" id="c-down" min="0" max="30" step="0.5" value="3.5">
+        <label>Interest Rate <span id="v-rate">6.5%</span></label>
+        <input type="range" id="c-rate" min="3" max="10" step="0.125" value="6.5">
+        <label>Loan Term <span id="v-term">30 years</span></label>
+        <input type="range" id="c-term" min="10" max="30" step="5" value="30">
+      </div>
+      <div class="calc-result">
+        <div class="lbl">Estimated Principal &amp; Interest</div>
+        <div class="amount" id="c-payment">$3,050</div>
+        <div class="per">per month</div>
+        <div class="breakdown" id="c-breakdown">Loan amount: $482,500 · Down payment: $17,500</div>
+        <a class="btn solid" href="sms:+19255509733?&body=Hi%20Ashley!%20I%20was%20playing%20with%20the%20calculator%20on%20your%20site.%20Can%20we%20talk%20about%20my%20numbers%3F">Like That Number? Text Me</a>
+        <div class="calc-note">Estimate only. Excludes taxes, insurance &amp; HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const f = id => document.getElementById(id);
+  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+  function calc(){
+    const price = +f('c-price').value, downPct = +f('c-down').value, rate = +f('c-rate').value, term = +f('c-term').value;
+    f('v-price').textContent = fmt(price);
+    f('v-down').textContent = downPct + '%';
+    f('v-rate').textContent = rate + '%';
+    f('v-term').textContent = term + ' years';
+    const down = price * downPct / 100, loan = price - down, r = rate/100/12, n = term*12;
+    const pay = r === 0 ? loan/n : loan * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+    f('c-payment').textContent = fmt(pay);
+    f('c-breakdown').innerHTML = 'Loan amount: ' + fmt(loan) + ' · Down payment: ' + fmt(down);
+  }
+  ['c-price','c-down','c-rate','c-term'].forEach(id => f(id).addEventListener('input', calc));
+  calc();
+})();
+</script>
 
 <section id="instagram">
   <div class="wrap">
@@ -386,6 +450,48 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
         <div class="sub">Behind the scenes, client wins &amp; mortgage tips. Come say hi!</div>
       </div>
       <a class="btn" href="https://www.instagram.com/AshleyMarieGurevich" target="_blank" rel="noopener">Follow</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <div class="eyebrow">Common Questions</div>
+      <h2>Answers before you even ask.</h2>
+    </div>
+    <details class="faq-item">
+      <summary>How much house can I afford?</summary>
+      <div class="a">A general guideline is to spend no more than 28% of your gross monthly income on housing and 36% on total debt. I will review your income, expenses, and goals with you to find a comfortable payment, free and with no obligation.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What credit score do I need to buy a house?</summary>
+      <div class="a">Conventional loans typically start at 620, while FHA and VA loans can accept lower scores. Even if your score is not there yet, I can help you build a plan to get mortgage-ready.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How much down payment do I need?</summary>
+      <div class="a">It can be less than you think. VA loans offer $0 down, FHA starts at 3.5%, and conventional options start at 3%. Down payment assistance programs may also be available.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Should I refinance my mortgage?</summary>
+      <div class="a">It depends on your current rate, how long you plan to stay, and your goals: lowering payments, pulling cash out, or paying off faster. I will run the numbers with you so the decision is clear.</div>
+    </details>
+    <div style="text-align:center;margin-top:30px">
+      <a class="btn" href="sms:+19255509733">Have a different question? Text me.</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="sec-head">
+      <div class="eyebrow">About Ashley</div>
+      <h2>I'll be with you every step of the way.</h2>
+    </div>
+    <div>
+      <p>Hello, my name is Ashley Gurevich! I stand out as a loan officer who blends expertise with empathy. I'm committed to the journey just as much as the destination, ensuring that you feel educated, confident, and ready to make one of life's biggest decisions.</p>
+      <p>My approach is both methodical and personal, providing a tailored experience that transforms the complex mortgage process into a smooth, stress-free endeavor. Whether it's your first home, a refinance, or a complex file that other lenders couldn't get done, I anticipate your needs and deliver results.</p>
+      <p>Based in Brentwood, California, and proudly serving clients throughout California, Washington, and Virginia.</p>
     </div>
   </div>
 </section>
@@ -421,6 +527,26 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
     <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/3029" target="_blank" rel="noopener">NMLS Consumer Access</a></p>
   </div>
 </footer>
+
+<div class="mobile-bar">
+  <a class="btn solid" href="sms:+19255509733">Text Me</a>
+  <a class="btn" href="tel:+19255509733">Call</a>
+  <a class="btn" onclick="openGate()" style="cursor:pointer">Free Guide</a>
+</div>
+
+<script>
+// Exit-intent: offer the guide once when the cursor leaves the top of the page (desktop only)
+(function(){
+  let shown = false;
+  document.addEventListener('mouseout', function(e){
+    if(shown || localStorage.getItem('guideUnlocked')) return;
+    if(!e.relatedTarget && e.clientY <= 0){
+      shown = true;
+      openGate();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
