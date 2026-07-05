@@ -392,18 +392,18 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
         <input type="range" id="c-price" min="100000" max="2000000" step="10000" value="500000">
         <label>Down Payment <span id="v-down">3.5%</span></label>
         <input type="range" id="c-down" min="0" max="30" step="0.5" value="3.5">
-        <label>Interest Rate <span id="v-rate">6.5%</span></label>
-        <input type="range" id="c-rate" min="3" max="10" step="0.125" value="6.5">
+        <label>Interest Rate <span id="v-rate">6%</span></label>
+        <input type="range" id="c-rate" min="3" max="10" step="0.125" value="6">
         <label>Loan Term <span id="v-term">30 years</span></label>
         <input type="range" id="c-term" min="10" max="30" step="5" value="30">
       </div>
       <div class="calc-result">
-        <div class="lbl">Estimated Principal &amp; Interest</div>
+        <div class="lbl">Estimated Total Monthly Payment</div>
         <div class="amount" id="c-payment">$3,050</div>
-        <div class="per">per month</div>
-        <div class="breakdown" id="c-breakdown">Loan amount: $482,500 · Down payment: $17,500</div>
+        <div class="per">per month, all in</div>
+        <div class="breakdown" id="c-breakdown"></div>
         <a class="btn solid" href="sms:+19255509733?&body=Hi%20Ashley!%20I%20was%20playing%20with%20the%20calculator%20on%20your%20site.%20Can%20we%20talk%20about%20my%20numbers%3F">Like That Number? Text Me</a>
-        <div class="calc-note">Estimate only. Excludes taxes, insurance &amp; HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
+        <div class="calc-note">Estimate only. Assumes 1.25% annual property taxes, $140/mo homeowners insurance and 0.50% annual mortgage insurance (waived with 20%+ down). Excludes HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
       </div>
     </div>
   </div>
@@ -420,9 +420,17 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
     f('v-rate').textContent = rate + '%';
     f('v-term').textContent = term + ' years';
     const down = price * downPct / 100, loan = price - down, r = rate/100/12, n = term*12;
-    const pay = r === 0 ? loan/n : loan * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
-    f('c-payment').textContent = fmt(pay);
-    f('c-breakdown').innerHTML = 'Loan amount: ' + fmt(loan) + ' · Down payment: ' + fmt(down);
+    const pi = r === 0 ? loan/n : loan * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+    const tax = price * 0.0125 / 12;   // 1.25% annual property taxes
+    const ins = 140;                    // homeowners insurance per month
+    const mi = downPct >= 20 ? 0 : loan * 0.005 / 12;  // 0.50% annual MI, waived at 20%+ down
+    const total = pi + tax + ins + mi;
+    f('c-payment').textContent = fmt(total);
+    f('c-breakdown').innerHTML =
+      'Principal &amp; interest: ' + fmt(pi) + '<br>' +
+      'Property taxes: ' + fmt(tax) + ' · Insurance: ' + fmt(ins) + '<br>' +
+      (mi > 0 ? 'Mortgage insurance: ' + fmt(mi) : 'No mortgage insurance (20%+ down)') + '<br>' +
+      'Loan amount: ' + fmt(loan) + ' · Down payment: ' + fmt(down);
   }
   ['c-price','c-down','c-rate','c-term'].forEach(id => f(id).addEventListener('input', calc));
   calc();
