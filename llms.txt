@@ -22,3 +22,15 @@
 - [258+ verified client reviews](https://www.experience.com/reviews/ashley-gurevich-454089)
 - [Apply for a mortgage](https://app.crosscountrymortgage.com/#/signup?referrerId=ashley.gurevich%40ccm.com)
 - [Instagram: first-time homebuyer tips, client wins and behind-the-scenes](https://www.instagram.com/ashleymariegurevich)
+
+## Pages
+- /affordability-calculator : Estimate approval amount with real FHA/conventional DTI rules, credit-based PMI vs FHA MIP.
+- /down-payment-assistance : 2026 guide to assistance programs serving Contra Costa County (CalHFA Dream For All, MyHome, WISH, AHOP, Smart Start) and how they stack.
+- /smart-start-grant : CCM Smart Start first-time buyer down payment grant.
+- /bye-bye-pmi : 15% down with no monthly mortgage insurance for strong-credit buyers.
+- /buy-before-you-sell : Bridge strategy to buy a new East Bay home before selling the current one.
+- /bank-statement-loans : Self-employed qualification using 12-24 months of deposits.
+- /1099-loans : Mortgage qualification on 1099 income for contractors and gig workers.
+- /solar-home-loans : How solar leases, PPAs and UCC filings affect East Bay home purchases.
+- /itin-loans : ITIN mortgage loans, no SSN required. Se habla espanol.
+- City pages: /brentwood-mortgage-lender, /antioch-mortgage-lender (incl. AHOP), /oakley-mortgage-lender, /pittsburg-mortgage-lender, /concord-mortgage-lender, /walnut-creek-mortgage-lender, /danville-mortgage-lender, /discovery-bay-mortgage-lender, /service-areas, /loan-programs
