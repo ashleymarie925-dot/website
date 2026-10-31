@@ -185,7 +185,7 @@ FOOTER = """<footer>
       <a href="https://www.experience.com/reviews/ashley-gurevich-454089" target="_blank" rel="noopener">Reviews</a> &middot;
       <a href="/blog/">Blog</a>
     </p>
-    <p>Ashley Gurevich is a Senior Loan Officer with CrossCountry Mortgage, LLC. NMLS3029 | Branch NMLS #2831895. Licensed in CA, WA, VA. Equal Housing Opportunity. This is not a commitment to lend; all loans subject to underwriting approval, and program terms may change without notice. CrossCountry Mortgage, LLC, 2160 Superior Avenue, Cleveland, OH 44114.
+    <p>Ashley Gurevich is a Senior Loan Officer with CrossCountry Mortgage, LLC. NMLS3029 | Branch NMLS #2831895. Licensed in CA and WA. Equal Housing Opportunity. This is not a commitment to lend; all loans subject to underwriting approval, and program terms may change without notice. CrossCountry Mortgage, LLC, 2160 Superior Avenue, Cleveland, OH 44114.
     <a href="https://crosscountrymortgage.com/licensing-and-disclosures/" target="_blank" rel="noopener">Disclosures &amp; Licenses</a> &middot;
     <a href="https://crosscountrymortgage.com/privacy-policy/" target="_blank" rel="noopener">Privacy</a> &middot;
     <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/3029" target="_blank" rel="noopener">NMLS Consumer Access</a></p>
@@ -309,7 +309,7 @@ def render_post(p, posts):
       <p>{esc(p.get("cta_text","Every plan starts with one conversation. Text me and we'll look at your numbers together."))}</p>
       <div class="row"><a class="btn solid" href="{CALENDLY}" target="_blank" rel="noopener">{esc(p.get("cta_button","Book a Free Call"))}</a><a class="btn" href="sms:+19255509733">Text (925) 550-9733</a></div>
     </div>
-    <p class="updated">Written by Ashley Gurevich, Senior Loan Officer at CrossCountry Mortgage (NMLS #847540), licensed in California, Washington and Virginia. Published {fmt_date(p["published"])}{upd}.</p>
+    <p class="updated">Written by Ashley Gurevich, Senior Loan Officer at CrossCountry Mortgage (NMLS #847540), licensed in California and Washington. Published {fmt_date(p["published"])}{upd}.</p>
     <p class="disclaim">This article is for general education and is not a commitment to lend or a loan approval. Program availability, terms and guidelines change and depend on your full application, credit, income, assets and property. Talk with a licensed loan officer about your specific situation. Equal Housing Opportunity.</p>
   </article>
   <aside>
