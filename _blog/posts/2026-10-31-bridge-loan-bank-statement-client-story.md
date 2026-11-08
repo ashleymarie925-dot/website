@@ -32,6 +32,8 @@ faq:
   - q: "Do I need to stop taking write-offs to qualify for a mortgage?"
     a: "Not necessarily. A bank statement loan is designed for business owners who follow their CPA's tax strategy, so you don't have to change how you file just to buy a home."
 ---
+
+<figure class="post-photo post-photo-top"><img src="/blog/images/bridge-loan-family-sold.jpg" alt="Family holding a SOLD sign in the kitchen of the dream home they bought with a bridge loan before selling their townhouse"><figcaption>Keys in hand: the day they walked into their dream home, before their townhouse was even listed. <a href="https://www.instagram.com/reel/DfEBX_hSoq6/" target="_blank" rel="noopener">Watch their story on Instagram</a></figcaption></figure>
 ## Where it started
 
 My clients came to me with a lot on their plate. They owned a townhouse they wanted to sell, they wanted to buy a home that fit their family better, and they were trying to figure out what all of that would look like in real numbers. Selling and buying at the same time is a lot to manage, and they did not want to feel pressured into a decision.
@@ -88,7 +90,6 @@ So that's exactly what we did. No fire sale. No panic. No racing to list a perfe
 
 Instead, we used a bridge loan to put the equity from their townhouse toward the down payment on their dream home. And then they got to unlock the front door and know their dream had become a reality.
 
-<figure class="post-photo"><img src="/blog/images/bridge-loan-family-sold.jpg" alt="Family holding a SOLD sign in the kitchen of the dream home they bought with a bridge loan before selling their townhouse" loading="lazy"><figcaption>Keys in hand: the day they walked into their dream home, before their townhouse was even listed. <a href="https://www.instagram.com/reel/DfEBX_hSoq6/" target="_blank" rel="noopener">Watch their story on Instagram</a></figcaption></figure>
 
 ## One step at a time
 

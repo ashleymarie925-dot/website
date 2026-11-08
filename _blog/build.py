@@ -105,6 +105,7 @@ nav{position:sticky;top:0;background:rgba(13,13,15,.92);backdrop-filter:blur(10p
 .article blockquote{border-left:2px solid var(--gold);padding:6px 0 6px 22px;margin:26px 0;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:var(--text)}
 .article blockquote p{color:var(--text);margin:0}
 .post-photo{margin:30px 0 32px}
+.post-photo-top{margin:0 0 28px}
 .post-photo img{width:100%;max-width:560px;display:block;border:1px solid var(--line)}
 .post-photo figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-style:italic;max-width:560px}
 .article table{width:100%;border-collapse:collapse;margin:8px 0 26px;font-size:14.5px}
