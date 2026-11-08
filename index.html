@@ -359,15 +359,15 @@
 
 <div class="topbar">
   <a class="tb-blog" href="/blog/buy-before-you-sell-bridge-loan-client-story"><span class="tb-tag">New on the Blog</span> How a bridge loan got my clients into their dream home before they sold <span class="tb-go">Read the story &rarr;</span></a>
-  <span class="tb-quick"><a href="#calculator">Payment Calculator &darr;</a><a href="https://www.experience.com/reviews/ashley-gurevich-454089" target="_blank" rel="noopener">4.99&#9733; Reviews &rarr;</a></span>
+  <span class="tb-quick"><a href="/calculator">Payment Calculator &rarr;</a><a href="https://www.experience.com/reviews/ashley-gurevich-454089" target="_blank" rel="noopener">4.99&#9733; Reviews &rarr;</a></span>
 </div>
 <nav>
   <div class="nav-inner">
     <div class="logo">Ashley <span>Gurevich</span></div>
     <div class="nav-links">
-      <a href="#about">About</a>
+      <a href="/about">About</a>
       <a href="#services">Loan Options</a>
-      <a href="#calculator">Calculator</a>
+      <a href="/calculator">Calculator</a>
       <a href="#guide">Free Guide</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a><a href="/loan-programs">Programs</a><a href="/service-areas">Areas</a><a href="/blog/">Blog</a></div>
@@ -495,7 +495,6 @@
   </div>
 </section>
 
-
 <section class="guide" id="guide">
   <div class="wrap">
     <div class="sec-head" style="text-align:center">
@@ -600,73 +599,6 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
   </div>
 </section>
 
-<section id="calculator">
-  <div class="wrap">
-    <div class="sec-head" style="text-align:center">
-      <div class="eyebrow">Payment Calculator</div>
-      <h2>What would your payment look like?</h2>
-      <p style="color:var(--muted);margin-top:12px">Play with the numbers. Fall in love with the payment first, then let's find the house.</p>
-      <p style="max-width:680px;margin:18px auto 0;padding:16px 22px;background:var(--card);border-left:2px solid var(--gold);color:var(--text);font-size:14px;text-align:left">Don't fall for clickbait calculators online. A lot of them just include principal and interest. This one includes taxes, mortgage insurance, and homeowners insurance to give you a closer estimate. Then <a href="sms:+19255509733">text me</a> to talk about your specific scenario. This is an estimate only.</p>
-    </div>
-    <div class="calc-wrap">
-      <div class="calc-inputs">
-        <label>Home Price <span id="v-price">$500,000</span></label>
-        <input type="range" id="c-price" min="100000" max="2000000" step="10000" value="500000">
-        <label>Down Payment <span id="v-down">3.5%</span></label>
-        <input type="range" id="c-down" min="0" max="30" step="0.5" value="3.5">
-        <label>Interest Rate <span id="v-rate">6%</span></label>
-        <input type="range" id="c-rate" min="3" max="10" step="0.125" value="6">
-        <label>Loan Term <span id="v-term">30 years</span></label>
-        <input type="range" id="c-term" min="10" max="30" step="5" value="30">
-      </div>
-      <div class="calc-result">
-        <div class="lbl">Estimated Total Monthly Payment</div>
-        <div class="amount" id="c-payment">$3,050</div>
-        <div class="per">per month, all in</div>
-        <div class="breakdown" id="c-breakdown"></div>
-        <a class="btn solid" href="sms:+19255509733?&body=Hi%20Ashley!%20I%20was%20playing%20with%20the%20calculator%20on%20your%20site.%20Can%20we%20talk%20about%20my%20numbers%3F">Like That Number? Text Me</a>
-        <div class="calc-note">Estimate only. Under 20% down assumes an FHA loan at 6% with 0.50% annual mortgage insurance. At 20%+ down assumes a conventional loan at 6.5% with no mortgage insurance. All scenarios include 1.25% annual property taxes and $140/mo homeowners insurance. Excludes HOA. Your real numbers depend on credit, program &amp; more. Let's run them together, for free.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-(function(){
-  const f = id => document.getElementById(id);
-  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
-  let lastType = 'FHA';
-  function calc(){
-    const downPctNow = +f('c-down').value;
-    const type = downPctNow >= 20 ? 'Conventional' : 'FHA';
-    if(type !== lastType){
-      f('c-rate').value = type === 'Conventional' ? 6.5 : 6;  // conventional assumes 6.5%, FHA 6%
-      lastType = type;
-    }
-    const price = +f('c-price').value, downPct = downPctNow, rate = +f('c-rate').value, term = +f('c-term').value;
-    f('v-price').textContent = fmt(price);
-    f('v-down').textContent = downPct + '%';
-    f('v-rate').textContent = rate + '%';
-    f('v-term').textContent = term + ' years';
-    const down = price * downPct / 100, loan = price - down, r = rate/100/12, n = term*12;
-    const pi = r === 0 ? loan/n : loan * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
-    const tax = price * 0.0125 / 12;   // 1.25% annual property taxes
-    const ins = 140;                    // homeowners insurance per month
-    const mi = downPct >= 20 ? 0 : loan * 0.005 / 12;  // 0.50% annual MI, waived at 20%+ down
-    const total = pi + tax + ins + mi;
-    f('c-payment').textContent = fmt(total);
-    f('c-breakdown').innerHTML =
-      '<strong style="color:var(--gold)">' + type + ' loan assumed</strong><br>' +
-      'Principal &amp; interest: ' + fmt(pi) + '<br>' +
-      'Property taxes: ' + fmt(tax) + ' · Insurance: ' + fmt(ins) + '<br>' +
-      (mi > 0 ? 'Mortgage insurance: ' + fmt(mi) : 'No mortgage insurance (20%+ down)') + '<br>' +
-      'Loan amount: ' + fmt(loan) + ' · Down payment: ' + fmt(down);
-  }
-  ['c-price','c-down','c-rate','c-term'].forEach(id => f(id).addEventListener('input', calc));
-  calc();
-})();
-</script>
-
 <section id="instagram">
   <div class="wrap">
     <div class="sec-head">
@@ -718,70 +650,7 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
   </div>
 </section>
 
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="sec-head">
-      <div class="about-photo"><img src="headshot.jpg" alt="Ashley Gurevich, Senior Mortgage Loan Officer in Brentwood, California" loading="lazy"></div>
-      <div class="eyebrow">About Ashley</div>
-      <h2>I'll be with you every step of the way.</h2>
-      <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
-        <a class="btn solid" href="sms:+19255509733">Text Me</a>
-        <a class="btn" href="tel:+19255509733">Call Me</a>
-      </div>
-    </div>
-    <div>
-      <p>Ashley Gurevich is a Senior Mortgage Loan Officer (NMLS #847540) with CrossCountry Mortgage, based in Brentwood, California and licensed in California and Washington. She started her career in finance in 2011 and has been a loan officer since 2021. She holds a 4.99 out of 5 star rating from more than 274 verified client reviews and specializes in helping first-time homebuyers create a plan for homeownership.</p>
-      <p>Hello, my name is Ashley Gurevich! I stand out as a loan officer who blends expertise with empathy. I'm committed to the journey just as much as the destination, ensuring that you feel educated, confident, and ready to make one of life's biggest decisions.</p>
-      <p>My approach is both methodical and personal, providing a tailored experience that transforms the complex mortgage process into a smooth, stress-free endeavor. Whether it's your first home, a refinance, or a complex file that other lenders couldn't get done, I anticipate your needs and deliver results.</p>
-      <p>Based in Brentwood, California, and proudly serving clients throughout California and Washington.</p>
-    </div>
-  </div>
-</section>
-
-
-  <section class="about" id="credentials">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">Credentials</div>
-        <h2>Recognition, community, and a little about me.</h2>
-      </div>
-      <div class="idx-links">
-        <div>
-          <h3>Awards</h3>
-          <ul>
-            <li>Top 1% of mortgage loan officers</li>
-            <li>Experience.com Top 5% Mortgage Professional</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Achievements</h3>
-          <ul>
-            <li>President of the Board of Directors, Trinity Light Academy</li>
-            <li>Licensed in California and Washington (NMLS #847540)</li>
-            <li>In finance since 2011, originating mortgages since 2021</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Memberships</h3>
-          <ul>
-            <li>Golden State Finance Authority (GSFA)</li>
-            <li>CalHFA</li>
-            <li>Fellowship Church</li>
-            <li>Trinity Light Academy</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Hobbies</h3>
-          <ul>
-            <li>Reading and writing</li>
-            <li>Going to the beach</li>
-            <li>Hanging out with my family</li>
-            <li>Making memories</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 <section class="contact" id="contact">
   <div class="wrap contact-grid">
     <div class="sec-head">
@@ -805,54 +674,10 @@ document.getElementById('gateModal').addEventListener('click', function(e){ if(e
   </div>
 </section>
 
-
-<section id="areas" style="padding:64px 0;border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="eyebrow">Explore</div>
-    <h2 style="font-size:34px;margin:10px 0 8px">Loan Programs &amp; Service Areas</h2>
-    <p style="color:var(--muted);max-width:640px;margin-bottom:18px">Local pages built for your city and situation - programs, eligibility, and honest answers. Start with the <a href="/affordability-calculator">affordability calculator</a>.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px" class="idx-links">
-      <div>
-        <h3 style="font-size:20px;color:var(--gold-soft);margin-bottom:10px">Loan Programs</h3>
-        <p style="line-height:2.1;font-size:14px">
-          <a href="/first-time-home-buyer-programs-bay-area">First-Time Buyer Programs (Bay Area Guide)</a><br>
-          <a href="/down-payment-assistance">Down Payment Assistance (Contra Costa Guide)</a><br>
-          <a href="/smart-start-grant">Smart Start First-Time Buyer Grant</a><br>
-          <a href="/bye-bye-pmi">Bye Bye PMI - 15% Down, No MI</a><br>
-          <a href="/buy-before-you-sell">Buy Before You Sell</a><br>
-          <a href="/bank-statement-loans">Bank Statement Loans</a><br>
-          <a href="/1099-loans">1099 Income Loans</a><br>
-          <a href="/solar-home-loans">Homes with Solar</a><br>
-          <a href="/itin-loans">ITIN Loans - Se Habla Espanol</a><br>
-          <a href="/va-loans-california">VA Loans - California</a><br>
-          <a href="/adu-financing-california">ADU Financing</a><br>
-          <a href="/fha-multi-unit-house-hacking">House Hacking (FHA 2-4 Units)</a><br>
-          <a href="/affordability-calculator">Affordability Calculator</a>
-        </p>
-      </div>
-      <div>
-        <h3 style="font-size:20px;color:var(--gold-soft);margin-bottom:10px">Service Areas</h3>
-        <p style="line-height:2.1;font-size:14px">
-          <a href="/brentwood-mortgage-lender">Brentwood</a> &middot;
-          <a href="/antioch-mortgage-lender">Antioch</a> &middot;
-          <a href="/oakley-mortgage-lender">Oakley</a> &middot;
-          <a href="/discovery-bay-mortgage-lender">Discovery Bay</a><br>
-          <a href="/pittsburg-mortgage-lender">Pittsburg</a> &middot;
-          <a href="/concord-mortgage-lender">Concord</a> &middot;
-          <a href="/walnut-creek-mortgage-lender">Walnut Creek</a> &middot;
-          <a href="/danville-mortgage-lender">Danville</a><br>
-          <a href="/service-areas">All service areas &rarr;</a><br>
-          <span style="color:var(--muted)">Also licensed in:</span>
-          <a href="/first-time-home-buyer-programs-washington">Washington</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div class="footer-brand">Ashley Gurevich · Senior Loan Officer · NMLS #847540 · Last updated July 2026</div>
+    <p class="footer-nav" style="margin-bottom:12px"><a href="/about">About Ashley</a> · <a href="/calculator">Payment Calculator</a> · <a href="/affordability-calculator">Affordability Calculator</a> · <a href="/loan-programs">Loan Programs</a> · <a href="/service-areas">Service Areas</a> · <a href="/blog/">Blog</a></p>
     <p style="color:#8a867e;margin-bottom:10px">Ashley Gurevich at CrossCountry Mortgage · 857 2nd Street Suite C, Brentwood, CA 94513 · Phone: <a href="tel:+19255509733">(925) 550-9733</a> · Email: <a href="mailto:ashley.gurevich@ccm.com">ashley.gurevich@ccm.com</a></p>
     <p style="margin-bottom:14px">
       <a href="https://www.instagram.com/AshleyMarieGurevich" target="_blank" rel="noopener">Instagram</a> ·
@@ -896,5 +721,6 @@ document.querySelectorAll('.st').forEach(function(b){b.addEventListener('click',
 })});
 </script>
 
+<script src="/menu.js" defer></script>
 </body>
 </html>

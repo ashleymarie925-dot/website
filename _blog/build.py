@@ -171,7 +171,7 @@ footer a{color:#8a867e}
 NAV = """<nav><div class="nav-inner">
   <a class="logo" href="/">Ashley <span>Gurevich</span></a>
   <div class="nav-links">
-    <a href="/#about">About</a><a href="/loan-programs">Loan Programs</a><a href="/buy-before-you-sell">Buy Before You Sell</a><a href="/blog/" class="on">Blog</a><a href="/#reviews">Reviews</a><a href="/#contact">Contact</a>
+    <a href="/about">About</a><a href="/loan-programs">Loan Programs</a><a href="/calculator">Calculator</a><a href="/buy-before-you-sell">Buy Before You Sell</a><a href="/blog/" class="on">Blog</a><a href="/#reviews">Reviews</a><a href="/#contact">Contact</a>
   </div>
   <a class="btn solid" href="sms:+19255509733">Text Me</a>
 </div></nav>"""
@@ -325,6 +325,7 @@ def render_post(p, posts):
 </div>
 {related}
 {FOOTER}
+<script src="/menu.js" defer></script>
 </body>
 </html>
 """
@@ -363,6 +364,7 @@ document.querySelectorAll('.cat').forEach(function(b){{b.onclick=function(){{
  document.querySelectorAll('#posts .pcard').forEach(function(c){{c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none'}});
 }}}});
 </script>
+<script src="/menu.js" defer></script>
 </body>
 </html>
 """
