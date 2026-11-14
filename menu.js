@@ -54,7 +54,7 @@
 /* Group text: every "Text Me" button opens a group text with Ashley and Cristina. */
 (function(){
   var ASHLEY = '+19255509733';
-  var CRISTINA = ''; // set to +1XXXXXXXXXX
+  var CRISTINA = '+15107508543';
   if (!CRISTINA) return;
   var ua = navigator.userAgent;
   var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
