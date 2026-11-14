@@ -50,3 +50,23 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') toggle(false); });
   window.addEventListener('resize', function(){ if(window.innerWidth > 820) toggle(false); });
 })();
+
+/* Group text: every "Text Me" button opens a group text with Ashley and Cristina. */
+(function(){
+  var ASHLEY = '+19255509733';
+  var CRISTINA = ''; // set to +1XXXXXXXXXX
+  if (!CRISTINA) return;
+  var ua = navigator.userAgent;
+  var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  function groupHref(h){
+    var m = h.match(/body=([^&]*)/), b = m ? m[1] : '';
+    return ios
+      ? 'sms://open?addresses=' + ASHLEY + ',' + CRISTINA + (b ? '&body=' + b : '')
+      : 'sms:' + ASHLEY + ',' + CRISTINA + (b ? '?body=' + b : '');
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="sms:"]');
+    if (!a || a.getAttribute('href').indexOf('sms:' + ASHLEY) !== 0) return;
+    a.setAttribute('href', groupHref(a.getAttribute('href')));
+  }, true);
+})();
