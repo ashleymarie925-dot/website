@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gurevich Guardians</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0f0d2e;--night2:#1c1850;--violet:#3b2f8f;--red:#ef3b4a;--blue:#3a86ff;--gold:#ffbe0b;--cream:#fff8e7;--ink:#1d1b33;--paper:#fffdf6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.bang{font-family:Bangers,Impact,sans-serif;letter-spacing:1.5px;font-weight:400;margin:0}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,box-shadow .3s}
+nav.solid{background:rgba(15,13,46,.94);backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,.25)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:8px;font-family:Bangers;color:var(--gold);font-size:24px;letter-spacing:1.5px;text-decoration:none}
+.logo .dots{display:flex;gap:3px}.logo .dots i{width:9px;height:9px;border-radius:50%;display:block}
+.links{display:flex;gap:20px}
+.links a{color:#fff;text-decoration:none;font-weight:800;font-size:15px;opacity:.9}
+.links a:hover{color:var(--gold)}
+@media(max-width:720px){.links{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 10%,#40329a 0%,#211b62 40%,var(--night) 100%);color:#fff;display:flex;align-items:center;text-align:center;padding:90px 0 160px}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.moon{position:absolute;top:12%;right:9%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe6,#ffe8a3);box-shadow:0 0 60px 18px rgba(255,232,163,.35)}
+.moon:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.06);top:26px;left:46px;box-shadow:-24px 22px 0 -3px rgba(0,0,0,.05)}
+.hills{position:absolute;left:0;right:0;bottom:0;height:200px;pointer-events:none}
+.hero .inner{position:relative;z-index:2;width:100%}
+.flyers{display:flex;justify-content:center;gap:clamp(14px,4vw,48px);margin-bottom:10px}
+.flyer{width:clamp(70px,13vw,120px);animation:fly 3.6s ease-in-out infinite;filter:drop-shadow(0 10px 16px rgba(0,0,0,.4))}
+.flyer:nth-child(2){animation-delay:.6s}.flyer:nth-child(3){animation-delay:1.2s}
+@keyframes fly{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+.cape{transform-origin:50% 0;animation:cape .5s ease-in-out infinite alternate}
+@keyframes cape{to{transform:skewX(-8deg) scaleY(1.05)}}
+.title{font-size:clamp(56px,12vw,132px);line-height:.9;color:var(--gold);text-shadow:4px 4px 0 var(--red),9px 9px 0 rgba(0,0,0,.35)}
+.title span{display:inline-block;animation:pop .7s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(0) rotate(-20deg);opacity:0}}
+.tag{font-size:clamp(17px,3.2vw,23px);font-weight:800;max-width:660px;margin:22px auto 30px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:Bangers;font-size:23px;letter-spacing:1.5px;text-decoration:none;padding:12px 28px;border-radius:60px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s;background:#fff;color:var(--ink)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.gold{background:var(--gold)}.btn.red{background:var(--red);color:#fff}.btn.blue{background:var(--blue);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;opacity:.75;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;animation:bob 1.8s infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* SECTIONS */
+section{padding:84px 0;position:relative}
+.eyebrow{font-weight:900;text-transform:uppercase;letter-spacing:2.5px;font-size:13px;color:var(--red)}
+h2{font-size:clamp(40px,6.5vw,64px);color:var(--night2);margin:4px 0 12px;line-height:1}
+.lead{font-size:19px;max-width:700px;margin:0}
+.center{text-align:center}.center .lead{margin:0 auto}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* BOOKSHELF */
+#books{background:linear-gradient(#fff8e7,#ffeccb)}
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px 30px;margin-top:50px;perspective:1400px}
+.bk{display:flex;flex-direction:column;align-items:center;text-align:center}
+.cover3d{position:relative;width:240px;height:330px;transform-style:preserve-3d;transform:rotateY(-24deg);transition:transform .6s cubic-bezier(.2,.8,.2,1);cursor:pointer;border:0;padding:0;background:none}
+.bk:hover .cover3d,.cover3d:focus-visible{transform:rotateY(-6deg) translateY(-8px) scale(1.03)}
+.cover3d .front{position:absolute;inset:0;border-radius:4px 14px 14px 4px;overflow:hidden;border:3px solid var(--ink);box-shadow:inset 6px 0 10px rgba(0,0,0,.25);display:flex;flex-direction:column;color:#fff;transform:translateZ(18px)}
+.cover3d .front .art{flex:1;background-size:cover;background-position:center;position:relative}
+.cover3d .front .art:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(10,8,40,.85))}
+.cover3d .front .lbl{position:absolute;left:0;right:0;bottom:0;padding:14px 14px 16px;z-index:2}
+.cover3d .front .num{font-family:Bangers;font-size:18px;letter-spacing:2px;color:var(--gold)}
+.cover3d .front .nm{font-family:Bangers;font-size:34px;line-height:.95;text-shadow:3px 3px 0 rgba(0,0,0,.5)}
+.cover3d .front .band{height:54px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:Bangers;font-size:15px;letter-spacing:1.5px;color:var(--ink);background:var(--gold);border-top:3px solid var(--ink)}
+.cover3d .spine{position:absolute;top:0;left:0;width:36px;height:100%;transform:rotateY(-90deg) translateZ(0);transform-origin:left;border:3px solid var(--ink);border-radius:4px 0 0 4px}
+.cover3d .pages{position:absolute;top:6px;right:-2px;width:34px;height:calc(100% - 12px);transform:rotateY(90deg) translateZ(222px);background:repeating-linear-gradient(90deg,#fff,#fff 2px,#e8e2d0 3px)}
+.cover3d .shadow{position:absolute;bottom:-26px;left:10%;width:90%;height:22px;background:radial-gradient(rgba(0,0,0,.35),transparent 70%);transform:translateZ(-20px) rotateX(90deg)}
+.bk p{max-width:300px;margin:26px 0 14px;font-size:16px}
+.prog{font-size:13px;font-weight:800;color:#8a6d00;height:20px;margin-bottom:8px}
+
+/* HEROES */
+#heroes{background:var(--night);color:#fff;overflow:hidden}
+#heroes h2{color:var(--gold)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:28px;margin-top:44px}
+.flip{perspective:1200px;height:480px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;border:3px solid #fff;padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+.face.back{transform:rotateY(180deg);background:var(--night2);align-items:stretch;text-align:left}
+.face .hero-art{width:140px;margin:6px 0 4px;animation:fly 3.4s ease-in-out infinite}
+.face h3{font-size:52px;line-height:1}
+.face .pw{font-weight:900;text-transform:uppercase;letter-spacing:2px;font-size:14px;background:rgba(0,0,0,.25);padding:4px 14px;border-radius:30px;margin:6px 0 12px}
+.face .tap{margin-top:auto;font-size:13px;font-weight:800;opacity:.8}
+.face.back h3{font-size:34px;margin-bottom:6px}
+.stat{margin:8px 0}
+.stat b{display:flex;justify-content:space-between;font-size:14px}
+.bar{height:12px;border-radius:10px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;border-radius:10px;width:0;transition:width 1.2s .3s cubic-bezier(.2,.8,.2,1)}
+.flip.on .bar i{width:var(--w)}
+.face.back p{font-size:14.5px;line-height:1.5;margin:10px 0 0;color:#d8d5ff}
+.f-red{background:linear-gradient(160deg,#ff5f6d,#c1121f)}.f-blue{background:linear-gradient(160deg,#5aa2ff,#1d4fd8)}.f-gold{background:linear-gradient(160deg,#ffd166,#f59e0b);color:var(--ink)}
+.face.f-gold{border-color:var(--ink)}
+
+/* GALLERY */
+#gallery{background:linear-gradient(#fff8e7,#fff)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;margin-top:40px}
+.mon{background:#fff;border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:5px 5px 0 var(--ink);transition:transform .2s}
+.mon:hover{transform:rotate(-1.5deg) scale(1.02)}
+.mon .pic{height:150px;background-size:cover;background-position:center;border-bottom:3px solid var(--ink)}
+.mon .tx{padding:14px 16px 18px}
+.mon h3{font-size:28px;color:var(--night2)}
+.mon .bk-tag{font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#888}
+.mon p{margin:6px 0 10px;font-size:15px}
+.badge{display:inline-block;font-weight:900;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:2px solid var(--ink)}
+.badge.friend{background:#b8f5c4}.badge.gone{background:#ffd6dc}
+
+/* QUIZ */
+#quiz{background:linear-gradient(135deg,#ef3b4a,#b5179e 50%,#3a86ff);color:#fff;overflow:hidden}
+#quiz h2{color:#fff;text-shadow:3px 3px 0 rgba(0,0,0,.25)}
+.qbox{max-width:680px;margin:36px auto 0;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink);padding:30px;min-height:330px;position:relative}
+.qstep{font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#888}
+.qdots{display:flex;gap:6px;margin:8px 0 14px}.qdots i{flex:1;height:7px;border-radius:5px;background:#eee}.qdots i.on{background:var(--gold)}
+.qq{font-family:Bangers;font-size:32px;letter-spacing:1px;line-height:1.1;margin-bottom:18px}
+.qa{display:grid;gap:12px}
+.qa button{text-align:left;font-size:17px;font-weight:800;padding:14px 18px;border-radius:16px;border:3px solid var(--ink);background:#fff;transition:transform .12s,background .12s}
+.qa button:hover{background:#fff4cc;transform:translateX(4px)}
+.result{text-align:center}
+.result .hero-art{width:130px;animation:fly 3s infinite ease-in-out}
+.result h3{font-size:48px;line-height:1}
+
+/* GAME */
+#game{background:var(--night);color:#fff}
+#game h2{color:var(--gold)}
+.gwrap{position:relative;max-width:760px;margin:34px auto 0;border:3px solid #fff;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.5);touch-action:none}
+#gc{display:block;width:100%;height:440px;background:linear-gradient(#1c1850,#0f0d2e)}
+.ghud{position:absolute;top:12px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:Bangers;font-size:26px;letter-spacing:1.5px;pointer-events:none;text-shadow:2px 2px 0 #000}
+.gover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(15,13,46,.82);text-align:center;padding:20px}
+.gover h3{font-size:46px;color:var(--gold)}
+.gover p{margin:0;max-width:440px;font-weight:700}
+
+footer{background:#08071c;color:#a9a5d8;text-align:center;padding:36px 0 40px;font-size:14px}
+footer .bang{color:var(--gold);font-size:26px}
+
+/* READER */
+#reader{position:fixed;inset:0;z-index:100;background:var(--paper);display:none;flex-direction:column}
+#reader.open{display:flex;animation:rin .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes rin{from{opacity:0;transform:scale(.96)}}
+#reader.night{--paper:#16142e;color:#ece9ff}
+.rbar{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--night);color:#fff;flex-wrap:wrap}
+.rbar .rt{font-family:Bangers;font-size:22px;letter-spacing:1px;color:var(--gold);flex:1;min-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rb{background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 11px;font-weight:800;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.rb:hover{background:rgba(255,255,255,.2)}
+.rb.on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.rb svg{width:18px;height:18px}
+select.rb{appearance:none;-webkit-appearance:none;max-width:200px}
+@media(max-width:520px){.rbar .rt{order:-1;flex-basis:calc(100% - 60px)}#rspeak span{display:none}select.rb{flex:1 1 0;min-width:0;max-width:none}}
+select.rb option{color:#000}
+.rprog{height:6px;background:rgba(0,0,0,.08)}
+.rprog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue),var(--gold));transition:width .2s}
+.rscroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.page{max-width:720px;margin:0 auto;padding:40px 22px 60px;font-family:Literata,Georgia,serif;font-size:var(--fs,20px);line-height:1.75}
+.page.turn{animation:turn .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes turn{from{opacity:0;transform:translateX(var(--dir,40px)) rotateY(-8deg)}}
+.chap-n{font-family:Bangers;color:var(--red);font-size:22px;letter-spacing:3px;text-align:center}
+.chap-t{font-family:Bangers;font-size:clamp(38px,7vw,58px);line-height:1;text-align:center;color:var(--night2);margin:4px 0 30px}
+#reader.night .chap-t{color:var(--gold)}
+.page p{margin:0 0 1.05em;transition:background .3s,box-shadow .3s;border-radius:8px}
+.page p.first:first-letter{float:left;font-family:Bangers;font-size:3.6em;line-height:.85;margin:6px 10px 0 0;color:var(--red)}
+.page p.speaking{background:rgba(255,190,11,.28);box-shadow:0 0 0 8px rgba(255,190,11,.28)}
+.page figure{margin:30px -10px;text-align:center}
+.page figure img{width:100%;border-radius:18px;border:3px solid var(--ink);box-shadow:6px 6px 0 rgba(0,0,0,.18);opacity:0;transform:scale(.96);transition:opacity .6s,transform .6s}
+.page figure img.in{opacity:1;transform:none}
+.page figcaption{font-family:Nunito;font-weight:800;font-size:15px;color:#7a7590;margin-top:10px;font-style:italic}
+.page .fx{font-family:Bangers;font-style:normal;font-size:1.25em;letter-spacing:1px;color:var(--red);display:inline-block;transform:rotate(-3deg)}
+.page .end{text-align:center;font-family:Bangers;font-size:44px;color:var(--night2);margin-top:20px}
+#reader.night .page .end{color:var(--gold)}
+.rnav{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:720px;margin:10px auto 0;padding:0 22px 50px;font-family:Nunito}
+.rdots{display:flex;gap:7px}.rdots button{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;padding:0}
+#reader.night .rdots button{border-color:#fff}
+.rdots button.on{background:var(--gold)}
+.celebrate{text-align:center;padding:30px 0 10px;font-family:Nunito}
+.celebrate h3{font-size:46px;color:var(--red)}
+.celebrate p{font-weight:700}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:200}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(100px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:30px;font-weight:800;z-index:300;transition:transform .35s}
+.toast.show{transform:translateX(-50%)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="toast" id="toast"></div>
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="#top"><span class="dots"><i style="background:var(--red)"></i><i style="background:var(--blue)"></i><i style="background:var(--gold)"></i></span>Gurevich Guardians</a>
+  <div class="links"><a href="#books">Books</a><a href="#heroes">Heroes</a><a href="#gallery">Monsters</a><a href="#quiz">Quiz</a><a href="#game">Game</a></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <canvas id="sky"></canvas>
+  <div class="moon"></div>
+  <svg class="hills" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#1a1550" d="M0 200V120C180 60 300 40 460 90S760 40 900 70 1200 110 1440 60V200z"/>
+    <path fill="#120f3a" d="M0 200V150C120 140 220 100 340 120S560 70 720 30 900 90 1040 110 1300 140 1440 120V200z"/>
+    <g fill="#120f3a"><rect x="690" y="0" width="14" height="40"/><rect x="740" y="0" width="14" height="40"/><rect x="700" y="18" width="46" height="30"/><path d="M688 0l9-14 9 14zM738 0l9-14 9 14z"/></g>
+    <rect x="712" y="26" width="6" height="8" fill="#ffd166"/><rect x="728" y="26" width="6" height="8" fill="#ffd166"/>
+    <path fill="#0b0a24" d="M0 200v-26h50v-14h34v14h40v-22h28v22h50v-10h30v-18h40v28h46v-14h56v14h30v-20h44v20h40v-30h34v30h52v-12h40v12h36v-22h50v22h30v-10h46v-18h36v28h56v-14h40v14h34v-24h46v24h36v-12h54v12h40v-20h40v20h48v26z"/>
+  </svg>
+  <div class="inner wrap">
+    <div class="flyers" id="flyers"></div>
+    <h1 class="title" id="title">The Gurevich<br>Guardians</h1>
+    <p class="tag">Three falling stars. Three brand new superpowers. A whole town full of monsters. Ethan, Jacob and Alana are on the case!</p>
+    <div class="btns"><a class="btn gold" href="#books">Start Reading</a><a class="btn" href="#quiz">Which Guardian Are You?</a></div>
+  </div>
+  <div class="scroll-hint">Scroll for adventure</div>
+</header>
+
+<section id="books">
+  <div class="wrap center reveal">
+    <div class="eyebrow">The series</div>
+    <h2>Pick a Book</h2>
+    <p class="lead">Three big adventures, all right here. Tap a book to open it, then read along or tap <b>Read to Me</b> and listen.</p>
+  </div>
+  <div class="wrap"><div class="shelf" id="shelf"></div></div>
+</section>
+
+<section id="heroes">
+  <div class="wrap">
+    <div class="center reveal"><div class="eyebrow" style="color:var(--gold)">Meet the team</div><h2>The Guardians</h2><p class="lead" style="color:#cfcbf5">Tap a card to see their secret stats.</p></div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="center reveal"><div class="eyebrow">Monsters and friends</div><h2>Who They Faced</h2><p class="lead">The Guardians never just beat a monster. Most of the time, they make a new friend.</p></div>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="center reveal"><div class="eyebrow" style="color:#ffe08a">Personality quiz</div><h2>Which Guardian Are You?</h2><p class="lead" style="font-weight:700">Answer five quick questions to find out which star would choose you.</p></div>
+    <div class="qbox" id="qbox"></div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="wrap">
+    <div class="center reveal"><div class="eyebrow" style="color:var(--gold)">Mini game</div><h2>Star Catcher</h2><p class="lead" style="color:#cfcbf5">Catch the falling red, blue and gold stars before they hit the ground. Watch out for gloom clouds! You have 30 seconds.</p></div>
+    <div class="gwrap" id="gwrap">
+      <canvas id="gc"></canvas>
+      <div class="ghud"><span id="gscore">Stars: 0</span><span id="gtime">30</span></div>
+      <div class="gover" id="gover"><h3>Ready, Guardian?</h3><p>Tap or click the stars to catch them. Gold stars are worth 3, red and blue are worth 1. Gloom clouds take 2 away.</p><p id="gbest"></p><button class="btn gold" id="gstart">Play</button></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="bang">The Gurevich Guardians</div><div style="margin-top:6px">As long as we stick together, we can handle anything.</div></footer>
+
+<!-- READER -->
+<div id="reader" role="dialog" aria-modal="true" aria-label="Book reader">
+  <div class="rbar">
+    <button class="rb" id="rclose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="rt" id="rtitle"></div>
+    <select class="rb" id="rchap" aria-label="Chapter"></select>
+    <button class="rb" id="rspeak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>Read to Me</span></button>
+    <button class="rb" id="rsize" aria-label="Text size">Aa</button>
+    <button class="rb" id="rnight" aria-label="Night mode"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5A8.5 8.5 0 018.5 4a8.5 8.5 0 1011.5 11.5z"/></svg></button>
+  </div>
+  <div class="rprog"><i id="rprog"></i></div>
+  <div class="rscroll" id="rscroll">
+    <article class="page" id="page"></article>
+    <div class="rnav"><button class="btn" id="rprev">Back</button><div class="rdots" id="rdots"></div><button class="btn gold" id="rnext">Next</button></div>
+  </div>
+</div>
+
+<script src="books.js"></script>
+<script>
+(function(){
+var B=window.BOOKS||[];
+var $=function(s){return document.querySelector(s)};
+function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem('gg_'+k))}localStorage.setItem('gg_'+k,JSON.stringify(v))}catch(e){return null}}
+
+/* hero figure svg */
+function hero(c,cape,girl,jaw){
+  return '<svg viewBox="0 0 120 150" aria-hidden="true"><g class="cape"><path d="M38 52 L20 128 Q60 120 100 128 L82 52z" fill="'+cape+'"/></g>'+
+  '<rect x="44" y="104" width="12" height="34" rx="6" fill="#2b2a4a"/><rect x="64" y="104" width="12" height="34" rx="6" fill="#2b2a4a"/>'+
+  '<rect x="40" y="52" width="40" height="58" rx="14" fill="'+c+'"/>'+
+  '<path d="M60 66l4.5 9 10 1.4-7.2 7 1.7 10-9-4.7-9 4.7 1.7-10-7.2-7 10-1.4z" fill="#fff"/>'+
+  '<path d="M42 58 L18 22" stroke="'+c+'" stroke-width="11" stroke-linecap="round"/><path d="M78 58 L102 22" stroke="'+c+'" stroke-width="11" stroke-linecap="round"/>'+
+  '<circle cx="17" cy="19" r="7" fill="#f2c4a0"/><circle cx="103" cy="19" r="7" fill="#f2c4a0"/>'+
+  (jaw?'<path d="M37 30 Q37 9 60 9 Q83 9 83 30 L85 44 L68 61 L52 61 L35 44 Z" fill="#f2c4a0" stroke="#b9764f" stroke-width="2" stroke-linejoin="miter"/><path d="M60 56 L60 60" stroke="#b9764f" stroke-width="1.8" stroke-linecap="round"/><path d="M38 44 L50 56 M82 44 L70 56" stroke="#dca07a" stroke-width="3" stroke-linecap="round" opacity=".7"/>':'<circle cx="60" cy="32" r="22" fill="#f2c4a0"/>')+
+  (girl?'<path d="M38 30 Q40 6 60 8 Q82 8 82 30 Q74 18 60 18 Q46 18 38 30z" fill="#7a4a2a"/><path d="M80 22 Q100 30 94 54 Q88 40 80 34z" fill="#7a4a2a"/>':'<path d="M38 30 Q38 8 60 9 Q84 9 82 30 Q76 16 60 18 Q46 16 38 30z" fill="#6b3f22"/>')+
+  '<rect x="40" y="26" width="40" height="11" rx="5.5" fill="'+cape+'"/><circle cx="51" cy="31" r="3.2" fill="#fff"/><circle cx="69" cy="31" r="3.2" fill="#fff"/>'+
+  '<path d="M51 42 Q60 49 69 42" stroke="#7a3b2e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+}
+var H={jacob:hero('#ef3b4a','#a3101d',0,1),ethan:hero('#3a86ff','#173f9e'),alana:hero('#ffb703','#f77f00',1)};
+$('#flyers').innerHTML='<div class="flyer">'+H.jacob+'</div><div class="flyer">'+H.ethan+'</div><div class="flyer">'+H.alana+'</div>';
+
+/* title letters */
+(function(){var t=$('#title'),html='',d=0;t.innerHTML.split('<br>').forEach(function(line,li){if(li)html+='<br>';line.split('').forEach(function(ch){html+=ch===' '?' ':'<span style="animation-delay:'+(d++*0.04)+'s">'+ch+'</span>'})});t.innerHTML=html})();
+
+/* sky */
+(function(){var c=$('#sky'),x=c.getContext('2d'),W,Hh,stars=[],shooters=[],cols=['#ef3b4a','#3a86ff','#ffbe0b'],ci=0;
+function rs(){W=c.width=c.offsetWidth*devicePixelRatio;Hh=c.height=c.offsetHeight*devicePixelRatio;stars=[];for(var i=0;i<160;i++)stars.push({x:Math.random()*W,y:Math.random()*Hh*.8,r:Math.random()*1.6+.4,p:Math.random()*6})}
+rs();addEventListener('resize',rs);
+setInterval(function(){if(document.hidden)return;shooters.push({x:Math.random()*W*.7+W*.1,y:Math.random()*Hh*.3,vx:(4+Math.random()*3)*devicePixelRatio,vy:(2+Math.random()*2)*devicePixelRatio,l:1,c:cols[ci++%3]})},1400);
+function f(t){x.clearRect(0,0,W,Hh);stars.forEach(function(s){x.globalAlpha=.4+.6*Math.abs(Math.sin(t/900+s.p));x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r*devicePixelRatio,0,7);x.fill()});
+shooters.forEach(function(s){s.x+=s.vx;s.y+=s.vy;s.l-=.012;var g=x.createLinearGradient(s.x,s.y,s.x-s.vx*18,s.y-s.vy*18);g.addColorStop(0,s.c);g.addColorStop(1,'transparent');x.globalAlpha=Math.max(s.l,0);x.strokeStyle=g;x.lineWidth=3*devicePixelRatio;x.beginPath();x.moveTo(s.x,s.y);x.lineTo(s.x-s.vx*18,s.y-s.vy*18);x.stroke();x.fillStyle=s.c;x.beginPath();x.arc(s.x,s.y,3.5*devicePixelRatio,0,7);x.fill()});
+shooters=shooters.filter(function(s){return s.l>0});x.globalAlpha=1;requestAnimationFrame(f)}requestAnimationFrame(f)})();
+
+/* nav */
+addEventListener('scroll',function(){$('#nav').classList.toggle('solid',scrollY>40)});
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+function watch(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el)})}
+
+/* shelf */
+var covers=['img/book1-03.webp','img/book2-07.webp','img/book3-02.webp'];
+var spines=['#3b2f8f','#4a4e69','#7b2cbf'];
+var blurbs=['Three falling stars give Ethan, Jacob and Alana superpowers, and monsters start popping up all over Brentwood. Who is sending them?','Midnight, the Shadow King\'s lonely dog, grows bigger every time she gets scared. When a thunderstorm hits, she is stomping through downtown!','A rainbow crack in the sky pulls the Guardians into a world of bubble Brentwoods: candy, upside down, underwater, and even dinosaurs!'];
+function renderShelf(){var h='';B.forEach(function(b,i){var p=store('prog'+b.n),pt='';if(p){pt=p.done?'You finished this one!':'You are on Chapter '+(p.c+1)+' of '+b.chapters.length}
+h+='<div class="bk reveal"><button class="cover3d" data-b="'+i+'" aria-label="Open '+b.title+'"><div class="spine" style="background:'+spines[i]+'"></div><div class="pages"></div><div class="front"><div class="art" style="background-image:url('+covers[i]+')"><div class="lbl"><div class="num">'+b.sub+'</div><div class="nm">'+b.title+'</div></div></div><div class="band">&#9733; 5 Chapters &#9733;</div></div></button>'+
+'<p>'+blurbs[i]+'</p><div class="prog">'+pt+'</div><button class="btn '+(['red','blue','gold'][i])+'" data-b="'+i+'">'+(p&&!p.done?'Keep Reading':'Read Book '+b.n)+'</button></div>'});
+$('#shelf').innerHTML=h;$('#shelf').querySelectorAll('[data-b]').forEach(function(el){el.onclick=function(){openBook(+el.dataset.b)}});watch()}
+renderShelf();
+
+/* heroes */
+var team=[
+ {k:'jacob',n:'Jacob',p:'Super Strength',c:'f-red',star:'Red',s:[['Strength',100],['Speed',45],['Inventing',40],['Leadership',95]],d:'The oldest and the team leader. Jacob can lift a bunk bed like paper, hold a dragon by the tail, and push open a stone door nobody else can move. Big muscles, bigger heart.',q:'"As long as we stick together, we can handle anything."'},
+ {k:'ethan',n:'Ethan',p:'Inventor Mind',c:'f-blue',star:'Blue',s:[['Strength',40],['Speed',45],['Inventing',100],['Big Ideas',95]],d:'If Ethan can imagine it, blue sparks fly and he builds it. The Giggle Cannon 3000, the team bands, a flying skateboard and the mighty Friendship Beam all came from his brain.',q:'"What beats gloom? Sunshine. Giggles. Rainbows."'},
+ {k:'alana',n:'Alana',p:'Super Speed',c:'f-gold',star:'Gold',s:[['Strength',40],['Speed',100],['Inventing',45],['Bravery',95]],d:'Fourteen cartwheels in one second! Alana zooms faster than the wind, ponytail flying. She is also the kindest Guardian, the first to offer a lonely monster a friend.',q:'"You don\'t have to be alone. You just have to start making friends."'}];
+$('#cards').innerHTML=team.map(function(t){return '<div class="flip reveal" tabindex="0"><div class="in"><div class="face '+t.c+'"><div class="hero-art">'+H[t.k]+'</div><h3>'+t.n+'</h3><div class="pw">'+t.p+'</div><div style="font-weight:700">Chosen by the '+t.star+' Star</div><div class="tap">Tap to flip</div></div>'+
+'<div class="face back"><h3 style="color:'+(t.k==='alana'?'#ffbe0b':t.k==='ethan'?'#5aa2ff':'#ff5f6d')+'">'+t.n+'\'s Stats</h3>'+t.s.map(function(s){return '<div class="stat"><b><span>'+s[0]+'</span><span>'+s[1]+'</span></b><div class="bar"><i style="--w:'+s[1]+'%;background:'+(t.k==='alana'?'#ffbe0b':t.k==='ethan'?'#3a86ff':'#ef3b4a')+'"></i></div></div>'}).join('')+'<p>'+t.d+'</p><p style="font-style:italic;color:#fff">'+t.q+'</p></div></div></div>'}).join('');
+document.querySelectorAll('.flip').forEach(function(f){f.onclick=function(){f.classList.toggle('on')};f.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('on')}}});
+
+/* gallery */
+var mons=[
+ ['The Gloomworm','Book 1','img/book1-04.webp','A giant purple worm that drains all the happy out of the park. One blast of the Giggle Cannon 3000 and it giggled itself down to gummy worm size.','gone','Giggled away'],
+ ['The Mud Goblin','Book 1','img/book1-07.webp','Tried to turn the gymnastics gym into a mud pit. The Guardians teamed up and turned its mud into a garden of sunflowers.','gone','Turned into a puddle'],
+ ['Grizzle Grunt','Book 1','img/book1-11.webp','A two headed troll guarding the castle gate. Too busy arguing about riddles to notice Alana zip right past.','gone','Outsmarted'],
+ ['The Shadow King','Books 1 to 3','img/book1-12.webp','Sent monsters to Brentwood because he was lonely. One Friendship Beam later, he has a silver crown, kind eyes, and three best friends.','friend','Now a friend'],
+ ['Midnight','Book 2','img/book2-07.webp','The Shadow King\'s lonely dog, who grows huge whenever she is scared. A giant game of fetch shrank her back down. Now she wears a star collar.','friend','Now a friend'],
+ ['Glitch','Book 3','img/book3-04.webp','A flickery little creature who tangled up the whole Superverse because it did not have a home. Now it has a room in the Shadow King\'s castle.','friend','Now a friend']];
+$('#gal').innerHTML=mons.map(function(m){return '<div class="mon reveal"><div class="pic" style="background-image:url('+m[2]+')"></div><div class="tx"><div class="bk-tag">'+m[1]+'</div><h3>'+m[0]+'</h3><p>'+m[3]+'</p><span class="badge '+m[4]+'">'+m[5]+'</span></div></div>'}).join('');
+
+/* quiz */
+var Q=[
+ ['How would your friends describe you?',[['Strong and caring','j'],['Smart and curious','e'],['Fast and full of energy','a']]],
+ ['Pick a superpower.',[['Super strength','j'],['Inventing anything','e'],['Super speed','a']]],
+ ['What sounds most fun?',[['Playing on a team','j'],['Building or making something','e'],['Running, jumping, or dancing','a']]],
+ ['When something goes wrong, you...',[['Jump in to help','j'],['Stop and make a plan','e'],['Act fast','a']]],
+ ['Pick a color.',[['Red','j'],['Blue','e'],['Gold','a']]]];
+var R2={j:'You are strong, caring, and a natural leader. People feel safe when you are around.',e:'You are curious and creative, and you are always full of big ideas.',a:'You are fast, brave, and kind. You bring the energy wherever you go!'};
+var qi=0,qs={j:0,e:0,a:0};
+function qRender(){var b=$('#qbox');if(qi>=Q.length)return qResult();var q=Q[qi];
+b.innerHTML='<div class="qstep">Question '+(qi+1)+' of '+Q.length+'</div><div class="qdots">'+Q.map(function(_,i){return '<i class="'+(i<=qi?'on':'')+'"></i>'}).join('')+'</div><div class="qq">'+q[0]+'</div><div class="qa">'+q[1].map(function(a){return '<button data-v="'+a[1]+'">'+a[0]+'</button>'}).join('')+'</div>';
+b.querySelectorAll('button').forEach(function(btn){btn.onclick=function(){qs[btn.dataset.v]++;qi++;qRender()}})}
+function qResult(){var w=['j','e','a'].sort(function(a,b){return qs[b]-qs[a]})[0],t=team[{j:0,e:1,a:2}[w]];
+$('#qbox').innerHTML='<div class="result"><div class="qstep">The '+t.star+' Star chose...</div><div class="hero-art" style="margin:10px auto">'+H[t.k]+'</div><h3 style="color:'+(w==='j'?'#ef3b4a':w==='e'?'#3a86ff':'#f59e0b')+'">You are '+t.n+'!</h3><p style="font-weight:800;font-size:18px">'+t.p+'</p><p style="font-size:17px">'+R2[w]+'</p><div class="btns" style="margin-top:16px"><button class="btn gold" id="qagain">Take It Again</button><a class="btn" href="#books">Read Their Story</a></div></div>';
+$('#qagain').onclick=function(){qi=0;qs={j:0,e:0,a:0};qRender()};confetti()}
+qRender();
+
+/* confetti */
+var cf=$('#confetti'),cx=cf.getContext('2d'),parts=[],cfOn=false;
+function confetti(){cf.width=innerWidth;cf.height=innerHeight;var cols=['#ef3b4a','#3a86ff','#ffbe0b','#fff','#b5179e'];for(var i=0;i<160;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*200,y:innerHeight*.45,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,r:Math.random()*7+4,c:cols[i%5],a:Math.random()*6,va:(Math.random()-.5)*.3,star:Math.random()<.35});if(!cfOn){cfOn=true;requestAnimationFrame(cfl)}}
+function star(x,y,r){cx.beginPath();for(var i=0;i<10;i++){var rr=i%2?r/2.2:r,an=i*Math.PI/5-Math.PI/2;cx.lineTo(x+Math.cos(an)*rr,y+Math.sin(an)*rr)}cx.closePath();cx.fill()}
+function cfl(){cx.clearRect(0,0,cf.width,cf.height);parts.forEach(function(p){p.vy+=.4;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;if(p.star)star(0,0,p.r);else cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore()});parts=parts.filter(function(p){return p.y<cf.height+40});if(parts.length)requestAnimationFrame(cfl);else{cfOn=false;cx.clearRect(0,0,cf.width,cf.height)}}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show')},2400)}
+
+/* READER */
+var cur={b:0,c:0},R=$('#reader'),synth=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=false,fsz=store('fs')||20;
+if(store('night'))R.classList.add('night'),$('#rnight').classList.add('on');
+if(!synth)$('#rspeak').style.display='none';
+function fx(h){return h.replace(/<em>([^<]*)<\/em>/g,function(m,t){return /^[A-Z][A-Z\-' ,.!]*[!.]?$/.test(t)&&t.replace(/[^A-Z]/g,'').length>2?'<span class="fx">'+t+'</span>':m})}
+function openBook(i,c){cur.b=i;var p=store('prog'+B[i].n);cur.c=c!=null?c:(p&&!p.done?p.c:0);R.classList.add('open');document.body.style.overflow='hidden';
+$('#rtitle').textContent=B[i].sub+': '+B[i].title;$('#rchap').innerHTML=B[i].chapters.map(function(ch,k){return '<option value="'+k+'">Ch '+ch.num+': '+ch.title+'</option>'}).join('');
+try{history.replaceState(null,'','#book-'+B[i].n)}catch(e){}renderChap(0)}
+function closeBook(){stopSpeak();R.classList.remove('open');document.body.style.overflow='';try{history.replaceState(null,'','#books')}catch(e){}renderShelf()}
+function renderChap(dir){stopSpeak();var b=B[cur.b],ch=b.chapters[cur.c],last=cur.c===b.chapters.length-1,first=true,h='';
+h+='<div class="chap-n">Chapter '+ch.num+'</div><div class="chap-t">'+ch.title+'</div>';
+ch.blocks.forEach(function(k){if(k.img){h+='<figure><img src="'+k.img+'" alt="'+(k.cap||'').replace(/<[^>]+>/g,'').replace(/"/g,'&quot;')+'" loading="lazy"><figcaption>'+(k.cap||'')+'</figcaption></figure>'}
+else if(/^<strong>The End<\/strong>$/.test(k.p)){h+='<div class="end">The End</div>'}
+else{h+='<p class="'+(first?'first':'')+'">'+fx(k.p)+'</p>';first=false}});
+if(last){var nb=B[cur.b+1];h+='<div class="celebrate"><h3 class="bang">Book Complete!</h3><p>Great reading, Guardian! You finished '+b.title+'.</p>'+(nb?'<button class="btn gold" id="nextbook">Start '+nb.sub+': '+nb.title+'</button>':'<p><b>You read the whole series!</b> Keep an eye on the sky for Book 4.</p>')+'</div>'}
+var pg=$('#page');pg.innerHTML=h;pg.classList.remove('turn');void pg.offsetWidth;pg.style.setProperty('--dir',(dir<0?'-40px':'40px'));if(dir)pg.classList.add('turn');pg.style.setProperty('--fs',fsz+'px');
+$('#rscroll').scrollTop=0;$('#rchap').value=cur.c;
+$('#rdots').innerHTML=b.chapters.map(function(_,k){return '<button class="'+(k===cur.c?'on':'')+'" data-k="'+k+'" aria-label="Chapter '+(k+1)+'"></button>'}).join('');
+$('#rdots').querySelectorAll('button').forEach(function(d){d.onclick=function(){go(+d.dataset.k)}});
+$('#rprev').style.visibility=cur.c?'visible':'hidden';$('#rnext').style.visibility=last?'hidden':'visible';
+pg.querySelectorAll('img').forEach(function(im){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){im.classList.add('in');o.disconnect()}},{root:$('#rscroll'),threshold:.2});o.observe(im)});
+var nbtn=$('#nextbook');if(nbtn)nbtn.onclick=function(){openBook(cur.b+1,0)};
+var prev=store('prog'+b.n)||{};store('prog'+b.n,{c:cur.c,done:prev.done||last});
+if(last&&!prev.done){var o2=new IntersectionObserver(function(es){if(es[0].isIntersecting){confetti();o2.disconnect()}},{root:$('#rscroll'),threshold:.5});o2.observe(pg.querySelector('.celebrate'))}
+updProg()}
+function go(k){var d=k>cur.c?1:-1;cur.c=Math.max(0,Math.min(B[cur.b].chapters.length-1,k));renderChap(d)}
+function updProg(){var s=$('#rscroll'),b=B[cur.b],n=b.chapters.length,f=s.scrollHeight-s.clientHeight>0?s.scrollTop/(s.scrollHeight-s.clientHeight):0;$('#rprog').style.width=((cur.c+f)/n*100)+'%'}
+$('#rscroll').addEventListener('scroll',updProg);
+$('#rclose').onclick=closeBook;$('#rprev').onclick=function(){go(cur.c-1)};$('#rnext').onclick=function(){go(cur.c+1)};
+$('#rchap').onchange=function(){go(+this.value)};
+$('#rsize').onclick=function(){fsz=fsz>=26?17:fsz+3;$('#page').style.setProperty('--fs',fsz+'px');store('fs',fsz);toast('Text size: '+(fsz<=17?'small':fsz<=20?'medium':fsz<=23?'large':'extra large'))};
+$('#rnight').onclick=function(){var on=R.classList.toggle('night');this.classList.toggle('on',on);store('night',on)};
+document.addEventListener('keydown',function(e){if(!R.classList.contains('open'))return;if(e.key==='Escape')closeBook();if(e.key==='ArrowRight')go(cur.c+1);if(e.key==='ArrowLeft')go(cur.c-1)});
+(function(){var sx=0,sy=0;$('#rscroll').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('#rscroll').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>80&&Math.abs(dx)>Math.abs(dy)*2){go(cur.c+(dx<0?1:-1))}},{passive:true})})();
+
+/* read to me */
+var queue=[],qpos=0;
+function pickVoice(){try{var v=synth.getVoices().filter(function(v){return /^en/i.test(v.lang)});return v.find(function(x){return /Samantha|Google US English|Aria|Jenny|Natural/i.test(x.name)})||v[0]||null}catch(e){return null}}
+function stopSpeak(){speaking=false;try{synth&&synth.cancel()}catch(e){}document.querySelectorAll('.page p.speaking').forEach(function(p){p.classList.remove('speaking')});var b=$('#rspeak');b.classList.remove('on');b.querySelector('span').textContent='Read to Me'}
+function speakNext(){if(!speaking)return;document.querySelectorAll('.page p.speaking').forEach(function(p){p.classList.remove('speaking')});
+if(qpos>=queue.length){speaking=false;stopSpeak();if(cur.c<B[cur.b].chapters.length-1){toast('Next chapter!');setTimeout(function(){go(cur.c+1);startSpeak()},1200)}return}
+var el=queue[qpos++];if(el.nodeType===1&&el.tagName==='P'){el.classList.add('speaking');el.scrollIntoView({behavior:'smooth',block:'center'})}
+var u=new SpeechSynthesisUtterance(el.textContent);u.rate=.92;u.pitch=1.05;var v=pickVoice();if(v)u.voice=v;u.onend=speakNext;u.onerror=function(){if(speaking)speakNext()};synth.speak(u)}
+function startSpeak(){if(!synth)return;try{synth.cancel()}catch(e){}speaking=true;var b=$('#rspeak');b.classList.add('on');b.querySelector('span').textContent='Stop';
+var t=document.createElement('p');t.textContent='Chapter '+B[cur.b].chapters[cur.c].num+'. '+B[cur.b].chapters[cur.c].title+'.';
+queue=[t].concat([].slice.call(document.querySelectorAll('.page p, .page .end')));qpos=0;speakNext()}
+$('#rspeak').onclick=function(){if(speaking)stopSpeak();else{try{startSpeak()}catch(e){toast('Read aloud is not available on this device')}}};
+
+/* deep link */
+function fromHash(){var m=location.hash.match(/^#book-(\d)$/);if(m&&B[+m[1]-1])openBook(+m[1]-1)}
+fromHash();addEventListener('hashchange',fromHash);
+
+/* GAME */
+var gc=$('#gc'),g=gc.getContext('2d'),GW,GH,objs=[],pops=[],score=0,tleft=30,playing=false,last=0,spawnT=0,best=store('best')||0;
+$('#gbest').textContent=best?'Best score: '+best:'';
+function gsize(){GW=gc.width=gc.offsetWidth*devicePixelRatio;GH=gc.height=gc.offsetHeight*devicePixelRatio}gsize();addEventListener('resize',gsize);
+function spawn(){var r=Math.random(),k=r<.18?'cloud':r<.36?'gold':r<.68?'red':'blue',s=devicePixelRatio;objs.push({k:k,x:(Math.random()*.86+.07)*GW,y:-30*s,v:(k==='gold'?3.4:2.2+Math.random()*1.4)*s*(1+(30-tleft)/40),r:(k==='cloud'?30:k==='gold'?20:24)*s,a:Math.random()*6})}
+function drawStar(x,y,r,c,a){g.save();g.translate(x,y);g.rotate(a);g.fillStyle=c;g.shadowColor=c;g.shadowBlur=18;g.beginPath();for(var i=0;i<10;i++){var rr=i%2?r/2.2:r,an=i*Math.PI/5-Math.PI/2;g.lineTo(Math.cos(an)*rr,Math.sin(an)*rr)}g.closePath();g.fill();g.restore()}
+function drawCloud(x,y,r){g.save();g.fillStyle='#4b4566';g.beginPath();g.arc(x-r*.5,y,r*.6,0,7);g.arc(x+r*.5,y,r*.6,0,7);g.arc(x,y-r*.35,r*.7,0,7);g.fill();g.fillStyle='#ffe066';g.beginPath();g.arc(x-r*.25,y-r*.1,r*.1,0,7);g.arc(x+r*.25,y-r*.1,r*.1,0,7);g.fill();g.strokeStyle='#ffe066';g.lineWidth=2*devicePixelRatio;g.beginPath();g.arc(x,y+r*.2,r*.2,3.6,5.8);g.stroke();g.restore()}
+function gloop(t){var dt=Math.min(40,t-(last||t));last=t;g.clearRect(0,0,GW,GH);
+var s=devicePixelRatio;g.fillStyle='#120f3a';g.beginPath();g.moveTo(0,GH);g.lineTo(0,GH-30*s);for(var i=0;i<=10;i++)g.lineTo(GW*i/10,GH-30*s-Math.sin(i*1.7)*14*s);g.lineTo(GW,GH);g.fill();
+if(playing){spawnT-=dt;if(spawnT<=0){spawn();spawnT=Math.max(260,700-(30-tleft)*14)}}
+objs.forEach(function(o){o.y+=o.v*dt/16;o.a+=.03;if(o.k==='cloud')drawCloud(o.x,o.y,o.r);else drawStar(o.x,o.y,o.r,{red:'#ef3b4a',blue:'#3a86ff',gold:'#ffbe0b'}[o.k],o.a)});
+objs=objs.filter(function(o){return o.y<GH+40*s&&!o.dead});
+pops.forEach(function(p){p.l-=dt/700;g.globalAlpha=Math.max(p.l,0);g.fillStyle=p.c;g.font=(28*s)+'px Bangers';g.textAlign='center';g.fillText(p.t,p.x,p.y-(1-p.l)*40*s)});g.globalAlpha=1;pops=pops.filter(function(p){return p.l>0});
+if(playing||objs.length||pops.length)requestAnimationFrame(gloop);else last=0}
+function hit(e){if(!playing)return;var r=gc.getBoundingClientRect(),pt=e.touches?e.touches[0]:e,x=(pt.clientX-r.left)*devicePixelRatio,y=(pt.clientY-r.top)*devicePixelRatio;
+for(var i=objs.length-1;i>=0;i--){var o=objs[i];if(Math.hypot(o.x-x,o.y-y)<o.r*1.6){o.dead=true;var v=o.k==='gold'?3:o.k==='cloud'?-2:1;score=Math.max(0,score+v);pops.push({x:o.x,y:o.y,t:(v>0?'+':'')+v,c:o.k==='cloud'?'#9d97c7':'#ffe066',l:1});$('#gscore').textContent='Stars: '+score;break}}}
+gc.addEventListener('pointerdown',function(e){e.preventDefault();hit(e)});
+var timer;function startGame(){score=0;tleft=30;objs=[];pops=[];playing=true;$('#gscore').textContent='Stars: 0';$('#gtime').textContent='30';$('#gover').style.display='none';gsize();requestAnimationFrame(gloop);
+clearInterval(timer);timer=setInterval(function(){tleft--;$('#gtime').textContent=tleft;if(tleft<=0){clearInterval(timer);playing=false;var nb=score>best;if(nb){best=score;store('best',best)}
+$('#gover').innerHTML='<h3>'+(score>=40?'Super Guardian!':score>=20?'Great Catching!':'Nice Try!')+'</h3><p style="font-size:22px">You caught <b>'+score+'</b> star points.</p><p>'+(nb?'New best score!':'Best score: '+best)+'</p><button class="btn gold" id="gagain">Play Again</button>';$('#gover').style.display='flex';$('#gagain').onclick=startGame;if(nb)confetti()}},1000)}
+$('#gstart').onclick=startGame;
+requestAnimationFrame(gloop);
+
+watch();
+})();
+</script>
+</body>
+</html>
