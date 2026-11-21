@@ -194,6 +194,16 @@ select.rb option{color:#000}
 .notehead .hero-art{width:56px;flex:none}
 .notehead b{font-family:Bangers;font-size:26px;letter-spacing:1px;color:#1d4fd8}
 .notewrap iframe{display:block;width:100%;height:560px;border:0;background:#fff}
+
+.lockcard{position:relative;margin:10px auto 0;max-width:560px;text-align:center;font-family:Nunito;background:linear-gradient(160deg,#1c1850,#0f0d2e);color:#fff;border:3px solid var(--ink);border-radius:24px;padding:30px 24px;box-shadow:6px 6px 0 rgba(0,0,0,.2)}
+.lockcard .lk{width:64px;height:64px;margin:0 auto 6px;border-radius:50%;background:var(--gold);display:grid;place-items:center;border:3px solid var(--ink);animation:fly 3s ease-in-out infinite}
+.lockcard .tbc{font-family:Bangers;font-size:20px;letter-spacing:3px;color:var(--gold)}
+.lockcard h3{font-size:34px;line-height:1.05;margin:6px 0 10px}
+.lockcard p{margin:0 0 16px;color:#cfcbf5;font-weight:700}
+.lockcard .small{font-size:14px;margin-top:12px}
+.lockcard .small a{color:var(--gold);cursor:pointer}
+.page.teaser p.lastp{-webkit-mask-image:linear-gradient(#000 30%,transparent);mask-image:linear-gradient(#000 30%,transparent)}
+.price{position:absolute;top:10px;right:-10px;background:var(--red);color:#fff;font-family:Bangers;font-size:22px;letter-spacing:1px;padding:4px 14px;border:3px solid var(--ink);border-radius:12px;transform:rotate(8deg) translateZ(30px);box-shadow:3px 3px 0 var(--ink);z-index:3}
 </style>
 </head>
 <body>
@@ -219,7 +229,7 @@ select.rb option{color:#000}
     <div class="flyers" id="flyers"></div>
     <h1 class="title" id="title">The Gurevich<br>Guardians</h1>
     <p class="tag">Three falling stars. Three brand new superpowers. A whole town full of monsters. Ethan, Jacob and Alana are on the case!</p>
-    <div class="btns"><a class="btn gold" href="#books">Start Reading</a><a class="btn" href="#quiz">Which Guardian Are You?</a></div>
+    <div class="btns"><a class="btn gold" href="#books">Read a Free Sneak Peek</a><a class="btn" href="#quiz">Which Guardian Are You?</a></div>
   </div>
   <div class="scroll-hint">Scroll for adventure</div>
 </header>
@@ -228,7 +238,7 @@ select.rb option{color:#000}
   <div class="wrap center reveal">
     <div class="eyebrow">The series</div>
     <h2>Pick a Book</h2>
-    <p class="lead">Three big adventures, all right here. Tap a book to open it, then read along or tap <b>Read to Me</b> and listen.</p>
+    <p class="lead">Three big adventures, $5 each. Tap any book to read a free sneak peek, or tap <b>Read to Me</b> and listen.</p>
   </div>
   <div class="wrap"><div class="shelf" id="shelf"></div></div>
 </section>
@@ -338,8 +348,8 @@ var covers=['img/book1-03.webp','img/book2-07.webp','img/book3-02.webp'];
 var spines=['#3b2f8f','#4a4e69','#7b2cbf'];
 var blurbs=['Three falling stars give Ethan, Jacob and Alana superpowers, and monsters start popping up all over Brentwood. Who is sending them?','Midnight, the Shadow King\'s lonely dog, grows bigger every time she gets scared. When a thunderstorm hits, she is stomping through downtown!','A rainbow crack in the sky pulls the Guardians into a world of bubble Brentwoods: candy, upside down, underwater, and even dinosaurs!'];
 function renderShelf(){var h='';B.forEach(function(b,i){var p=store('prog'+b.n),pt='';if(p){pt=p.done?'You finished this one!':'You are on Chapter '+(p.c+1)+' of '+b.chapters.length}
-h+='<div class="bk reveal"><button class="cover3d" data-b="'+i+'" aria-label="Open '+b.title+'"><div class="spine" style="background:'+spines[i]+'"></div><div class="pages"></div><div class="front"><div class="art" style="background-image:url('+covers[i]+')"><div class="lbl"><div class="num">'+b.sub+'</div><div class="nm">'+b.title+'</div></div></div><div class="band">&#9733; 5 Chapters &#9733;</div></div></button>'+
-'<p>'+blurbs[i]+'</p><div class="prog">'+pt+'</div><button class="btn '+(['red','blue','gold'][i])+'" data-b="'+i+'">'+(p&&!p.done?'Keep Reading':'Read Book '+b.n)+'</button></div>'});
+h+='<div class="bk reveal"><button class="cover3d" data-b="'+i+'" aria-label="Open '+b.title+'"><div class="price">$5</div><div class="spine" style="background:'+spines[i]+'"></div><div class="pages"></div><div class="front"><div class="art" style="background-image:url('+covers[i]+')"><div class="lbl"><div class="num">'+b.sub+'</div><div class="nm">'+b.title+'</div></div></div><div class="band">&#9733; 5 Chapters &#9733;</div></div></button>'+
+'<p>'+blurbs[i]+'</p><button class="btn '+(['red','blue','gold'][i])+'" data-b="'+i+'">Read a Free Sneak Peek</button></div>'});
 $('#shelf').innerHTML=h;$('#shelf').querySelectorAll('[data-b]').forEach(function(el){el.onclick=function(){openBook(+el.dataset.b)}});watch()}
 renderShelf();
 
@@ -391,7 +401,7 @@ var cur={b:0,c:0},R=$('#reader'),synth=('speechSynthesis' in window)?window.spee
 if(store('night'))R.classList.add('night'),$('#rnight').classList.add('on');
 if(!synth)$('#rspeak').style.display='none';
 function fx(h){return h.replace(/<em>([^<]*)<\/em>/g,function(m,t){return /^[A-Z][A-Z\-' ,.!]*[!.]?$/.test(t)&&t.replace(/[^A-Z]/g,'').length>2?'<span class="fx">'+t+'</span>':m})}
-function openBook(i,c){cur.b=i;var p=store('prog'+B[i].n);cur.c=c!=null?c:(p&&!p.done?p.c:0);R.classList.add('open');document.body.style.overflow='hidden';
+function openBook(i,c){cur.b=i;var p=store('prog'+B[i].n);cur.c=0;R.classList.add('open');document.body.style.overflow='hidden';
 $('#rtitle').textContent=B[i].sub+': '+B[i].title;$('#rchap').innerHTML=B[i].chapters.map(function(ch,k){return '<option value="'+k+'">Ch '+ch.num+': '+ch.title+'</option>'}).join('');
 try{history.replaceState(null,'','#book-'+B[i].n)}catch(e){}renderChap(0)}
 function closeBook(){stopSpeak();R.classList.remove('open');document.body.style.overflow='';try{history.replaceState(null,'','#books')}catch(e){}renderShelf()}
@@ -400,16 +410,15 @@ h+='<div class="chap-n">Chapter '+ch.num+'</div><div class="chap-t">'+ch.title+'
 ch.blocks.forEach(function(k){if(k.img){h+='<figure><img src="'+k.img+'" alt="'+(k.cap||'').replace(/<[^>]+>/g,'').replace(/"/g,'&quot;')+'" loading="lazy"><figcaption>'+(k.cap||'')+'</figcaption></figure>'}
 else if(/^<strong>The End<\/strong>$/.test(k.p)){h+='<div class="end">The End</div>'}
 else{h+='<p class="'+(first?'first':'')+'">'+fx(k.p)+'</p>';first=false}});
-if(last){var nb=B[cur.b+1];h+='<div class="celebrate"><h3 class="bang">Book Complete!</h3><p>Great reading, Guardian! You finished '+b.title+'.</p>'+(nb?'<button class="btn gold" id="nextbook">Start '+nb.sub+': '+nb.title+'</button>':'<p><b>You read the whole series!</b> Keep an eye on the sky for Book 4.</p>')+'</div>'}
-var pg=$('#page');pg.innerHTML=h;pg.classList.remove('turn');void pg.offsetWidth;pg.style.setProperty('--dir',(dir<0?'-40px':'40px'));if(dir)pg.classList.add('turn');pg.style.setProperty('--fs',fsz+'px');
+if(last&&b.teaser){h+='<div class="lockcard"><div class="lk"><svg width="30" height="30" viewBox="0 0 24 24" fill="#1d1b33"><path d="M7 10V7a5 5 0 0110 0v3h1a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8a2 2 0 012-2h1zm2 0h6V7a3 3 0 00-6 0v3z"/></svg></div><div class="tbc">To be continued...</div><h3>'+b.hook+'</h3><p>Unlock all '+b.total+' chapters of '+b.title+', with every picture, plus Read to Me.</p><button class="btn gold" id="buybtn">Unlock the Whole Book for $5</button><div class="small">Already bought it? <a id="signinlink">Sign in</a></div></div>'}
+var pg=$('#page');pg.innerHTML=h;pg.classList.toggle('teaser',!!b.teaser);if(last&&b.teaser){var ps=pg.querySelectorAll('.page > p');if(ps.length)ps[ps.length-1].classList.add('lastp')}var bb=$('#buybtn');if(bb)bb.onclick=function(){toast('Checkout is almost ready. Check back soon!')};var sl=$('#signinlink');if(sl)sl.onclick=function(){toast('Sign in is coming soon!')};pg.classList.remove('turn');void pg.offsetWidth;pg.style.setProperty('--dir',(dir<0?'-40px':'40px'));if(dir)pg.classList.add('turn');pg.style.setProperty('--fs',fsz+'px');
 $('#rscroll').scrollTop=0;$('#rchap').value=cur.c;
 $('#rdots').innerHTML=b.chapters.map(function(_,k){return '<button class="'+(k===cur.c?'on':'')+'" data-k="'+k+'" aria-label="Chapter '+(k+1)+'"></button>'}).join('');
 $('#rdots').querySelectorAll('button').forEach(function(d){d.onclick=function(){go(+d.dataset.k)}});
 $('#rprev').style.visibility=cur.c?'visible':'hidden';$('#rnext').style.visibility=last?'hidden':'visible';
 pg.querySelectorAll('img').forEach(function(im){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){im.classList.add('in');o.disconnect()}},{root:$('#rscroll'),threshold:.2});o.observe(im)});
-var nbtn=$('#nextbook');if(nbtn)nbtn.onclick=function(){openBook(cur.b+1,0)};
-var prev=store('prog'+b.n)||{};store('prog'+b.n,{c:cur.c,done:prev.done||last});
-if(last&&!prev.done){var o2=new IntersectionObserver(function(es){if(es[0].isIntersecting){confetti();o2.disconnect()}},{root:$('#rscroll'),threshold:.5});o2.observe(pg.querySelector('.celebrate'))}
+
+
 updProg()}
 function go(k){var d=k>cur.c?1:-1;cur.c=Math.max(0,Math.min(B[cur.b].chapters.length-1,k));renderChap(d)}
 function updProg(){var s=$('#rscroll'),b=B[cur.b],n=b.chapters.length,f=s.scrollHeight-s.clientHeight>0?s.scrollTop/(s.scrollHeight-s.clientHeight):0;$('#rprog').style.width=((cur.c+f)/n*100)+'%'}
