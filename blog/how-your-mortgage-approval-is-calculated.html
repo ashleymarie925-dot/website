@@ -142,6 +142,7 @@ footer a{color:#8a867e}
   <h1>What People Don&#x27;t Know About Buying a House: How Your Approval Is Calculated</h1>
   <p class="dek">We don&#x27;t look at how much you owe. We look at your monthly payments. Here&#x27;s how your approval amount is really calculated, and the little-known ways a debt can stop counting against you.</p>
   <div class="byline"><img src="/headshot.jpg" alt="Ashley Gurevich"><div><b>Ashley Gurevich</b>, Senior Loan Officer, NMLS #847540<br>November 26, 2026 &middot; 8 min read</div></div>
+  <p style="margin:26px 0 0"><a class="btn" href="#ask">Have a question? Ask it here</a></p>
 </div></header>
 <div class="wrap post-grid">
   <article class="article">
@@ -251,6 +252,35 @@ footer a{color:#8a867e}
     d.append('entry.534573983',location.pathname);
     fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
       f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+
+    
+<div class="subbox" id="ask">
+  <div class="eyebrow">Ask me anything</div>
+  <h2>Have a question?</h2>
+  <p>Send it in and I may answer it in a future post. It's anonymous: no name, email or phone needed.</p>
+  <form id="askForm">
+    <textarea id="ask-q" rows="4" placeholder="Type your question here" required style="width:100%;padding:14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit;resize:vertical"></textarea>
+    <button class="btn solid" id="ask-btn" type="submit">Send my question</button>
+  </form>
+  <div class="done" id="ask-done">Got it! Thank you for the question.</div>
+  <p class="fine">Want an answer back from me directly? <a href="sms:+19255509733?body=This%20is%20a%20question%20from%20your%20blog.%20I%27d%20love%20to%20see%20it%20addressed.%20Here%27s%20my%20question%3A%20" style="color:var(--gold)">Text me your question instead</a>.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLSdxUlAVSHnAwW5AvB5tuGk7iFR8cTxuu-N-VyGAMuKRDK_NWQ/formResponse';
+  var f=document.getElementById('askForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('ask-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.238228310',document.getElementById('ask-q').value);
+    d.append('entry.910388583',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('ask-done').style.display='block';
     });
   });
 })();

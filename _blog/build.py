@@ -244,6 +244,38 @@ SUBSCRIBE = """
 </script>
 """
 
+
+ASKBTN = '<p style="margin:26px 0 0"><a class="btn" href="#ask">Have a question? Ask it here</a></p>'
+ASKBOX = """
+<div class="subbox" id="ask">
+  <div class="eyebrow">Ask me anything</div>
+  <h2>Have a question?</h2>
+  <p>Send it in and I may answer it in a future post. It's anonymous: no name, email or phone needed.</p>
+  <form id="askForm">
+    <textarea id="ask-q" rows="4" placeholder="Type your question here" required style="width:100%;padding:14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit;resize:vertical"></textarea>
+    <button class="btn solid" id="ask-btn" type="submit">Send my question</button>
+  </form>
+  <div class="done" id="ask-done">Got it! Thank you for the question.</div>
+  <p class="fine">Want an answer back from me directly? <a href="sms:+19255509733?body=This%20is%20a%20question%20from%20your%20blog.%20I%27d%20love%20to%20see%20it%20addressed.%20Here%27s%20my%20question%3A%20" style="color:var(--gold)">Text me your question instead</a>.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLSdxUlAVSHnAwW5AvB5tuGk7iFR8cTxuu-N-VyGAMuKRDK_NWQ/formResponse';
+  var f=document.getElementById('askForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('ask-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.238228310',document.getElementById('ask-q').value);
+    d.append('entry.910388583',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('ask-done').style.display='block';
+    });
+  });
+})();
+</script>
+"""
+
 def head(title, desc, url, og_type, image, schemas):
     blocks = "\n".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schemas)
     return f"""<!DOCTYPE html>
@@ -345,12 +377,14 @@ def render_post(p, posts):
   <h1>{esc(p["title"])}</h1>
   <p class="dek">{esc(p["description"])}</p>
   <div class="byline"><img src="/headshot.jpg" alt="Ashley Gurevich"><div><b>Ashley Gurevich</b>, Senior Loan Officer, NMLS #847540<br>{fmt_date(p["published"])}{upd} &middot; {mins} min read</div></div>
+  {ASKBTN}
 </div></header>
 <div class="wrap post-grid">
   <article class="article">
     {answer}
     {body}
     {SUBSCRIBE}
+    {ASKBOX}
     {faq_html}
     <div class="endcta">
       <h2>{esc(p.get("cta_title","Let's map out your move."))}</h2>
@@ -402,9 +436,10 @@ def render_index(posts):
   <h1>Straight answers for your next move.</h1>
   <p>Strategies, real client wins and plain-English guides from a Bay Area loan officer, so you can buy with a plan.</p>
   <div class="cats">{btns}</div>
+  {ASKBTN}
 </div></header>
 <div class="wrap"><div class="posts" id="posts">{cards}</div></div>
-<div class="wrap" style="max-width:720px">{SUBSCRIBE}</div>
+<div class="wrap" style="max-width:720px">{SUBSCRIBE}{ASKBOX}</div>
 {FOOTER}
 <script>
 document.querySelectorAll('.cat').forEach(function(b){{b.onclick=function(){{
