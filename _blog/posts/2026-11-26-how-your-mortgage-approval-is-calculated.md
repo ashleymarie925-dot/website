@@ -106,6 +106,8 @@ Say a family member or friend had you co-sign on their car. It shows up on your 
 - The payments come out of their own account (one that doesn't have your name on it), and
 - The payments have been made on time.
 
+<div markdown="0" style="border:2px solid #D2A94E;padding:26px 22px;margin:40px 0;text-align:center"><p style="font-size:28px;font-weight:700;color:#F5F2E9;line-height:1.25;margin:0 0 12px;text-transform:uppercase;letter-spacing:.5px">But don't pay things off on your own without a game plan!</p><p style="margin:0;color:#c9c6bf;font-size:17px">There are little-known rules that can save you money. You don't want to spend your savings paying off debts that don't even count.</p></div>
+
 ## The takeaway
 
 Your approval amount isn't set in stone. It moves with which debts count, and a lot of people have more room than they think.
