@@ -162,6 +162,50 @@ footer a{color:#8a867e}
 <p>I have special products for business owners and 1099 employees that can help you get a loan without your tax returns. Learn more about <a href="/bank-statement-loans">bank statement loans</a> and <a href="/1099-loans">1099 loans</a>.</p>
 <h2 id="lets-get-your-game-plan-started">Let's get your game plan started</h2>
 <p>If any of these sound like a great fit for you, call or text me anytime at <a href="sms:+19255509733">925-550-9733</a>. I look forward to speaking with you soon!</p>
+    
+<style>
+.subbox{margin:46px 0 10px;border:1px solid var(--gold);background:#17171c;padding:30px 26px}
+.subbox h2{font-size:28px;margin:6px 0 8px}
+.subbox p{color:var(--muted);margin:0 0 18px}
+.subbox form{display:grid;gap:12px}
+.subbox input{width:100%;padding:14px 14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit}
+.subbox input:focus{outline:none;border-color:var(--gold)}
+.subbox button{font-family:inherit;width:100%}
+.subbox .fine{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.subbox .done{display:none;text-align:center;color:var(--text);font-size:18px;padding:10px 0}
+</style>
+<div class="subbox" id="subscribe">
+  <div class="eyebrow">Never miss a post</div>
+  <h2>Get new posts sent to you</h2>
+  <p>Be the first to know when a new post goes up.</p>
+  <form id="subForm">
+    <input id="sub-name" type="text" placeholder="Your name" autocomplete="name" required>
+    <input id="sub-email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="sub-phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+    <button class="btn solid" id="sub-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="done" id="sub-done">You're in! I'll let you know when the next post is up.</div>
+  <p class="fine">By subscribing, you agree to receive emails and texts from Ashley Gurevich about new blog posts. Message and data rates may apply. You can unsubscribe at any time.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLScwnl34FcajwU1oKkafxSarTjSd-xzUxJhnD0NGu1-W3Mid_Q/formResponse';
+  var f=document.getElementById('subForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('sub-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.1899124695',document.getElementById('sub-name').value);
+    d.append('entry.1977497846',document.getElementById('sub-email').value);
+    d.append('entry.470970619',document.getElementById('sub-phone').value);
+    d.append('entry.534573983',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+
     <section class="faq" id="faq"><div class="eyebrow">Questions</div><h2 style="font-size:34px;margin:10px 0 20px">Straight answers</h2><details class="faq-item"><summary>Will applying with you hurt my credit?</summary><div class="a">We start with a soft pull only application, so it doesn&#x27;t run your credit score. It gives us a clear picture so we can build your game plan.</div></details><details class="faq-item"><summary>Can I buy my next home before I sell my current one?</summary><div class="a">It&#x27;s possible! We dial down all the numbers, look at the pros and cons, and create a plan together so you can move up without having to sell first.</div></details><details class="faq-item"><summary>I&#x27;m self-employed or a 1099 employee. Can I still get a loan?</summary><div class="a">Yes. I have special products for business owners and 1099 employees that can help you get a loan without your tax returns.</div></details><details class="faq-item"><summary>Should I rent or buy?</summary><div class="a">It depends on your numbers and your goals. We&#x27;ll look at the pros and cons together so you can make the decision that&#x27;s right for you.</div></details></section>
     <div class="endcta">
       <h2>Ready to start your game plan?</h2>

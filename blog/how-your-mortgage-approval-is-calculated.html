@@ -212,6 +212,50 @@ footer a{color:#8a867e}
 
 <p>Have a question about your own situation? Call or text me anytime at <a href="sms:+19255509733">925-550-9733</a>.</p>
 <p><em>The dollar examples above assume a 30-year fixed loan at current market rates and count principal and interest only. Guidelines vary by loan program, and some debts (like car leases) are treated differently. Your actual results depend on your rate, loan program, taxes, insurance and full credit approval.</em></p>
+    
+<style>
+.subbox{margin:46px 0 10px;border:1px solid var(--gold);background:#17171c;padding:30px 26px}
+.subbox h2{font-size:28px;margin:6px 0 8px}
+.subbox p{color:var(--muted);margin:0 0 18px}
+.subbox form{display:grid;gap:12px}
+.subbox input{width:100%;padding:14px 14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit}
+.subbox input:focus{outline:none;border-color:var(--gold)}
+.subbox button{font-family:inherit;width:100%}
+.subbox .fine{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.subbox .done{display:none;text-align:center;color:var(--text);font-size:18px;padding:10px 0}
+</style>
+<div class="subbox" id="subscribe">
+  <div class="eyebrow">Never miss a post</div>
+  <h2>Get new posts sent to you</h2>
+  <p>Be the first to know when a new post goes up.</p>
+  <form id="subForm">
+    <input id="sub-name" type="text" placeholder="Your name" autocomplete="name" required>
+    <input id="sub-email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="sub-phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+    <button class="btn solid" id="sub-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="done" id="sub-done">You're in! I'll let you know when the next post is up.</div>
+  <p class="fine">By subscribing, you agree to receive emails and texts from Ashley Gurevich about new blog posts. Message and data rates may apply. You can unsubscribe at any time.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLScwnl34FcajwU1oKkafxSarTjSd-xzUxJhnD0NGu1-W3Mid_Q/formResponse';
+  var f=document.getElementById('subForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('sub-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.1899124695',document.getElementById('sub-name').value);
+    d.append('entry.1977497846',document.getElementById('sub-email').value);
+    d.append('entry.470970619',document.getElementById('sub-phone').value);
+    d.append('entry.534573983',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+
     <section class="faq" id="faq"><div class="eyebrow">Questions</div><h2 style="font-size:34px;margin:10px 0 20px">Straight answers</h2><details class="faq-item"><summary>Do lenders look at my total debt or my monthly payments?</summary><div class="a">Your monthly payments. A $30,000 car loan doesn&#x27;t count as $30,000. The $500 monthly payment is what goes into the math.</div></details><details class="faq-item"><summary>What is a debt-to-income ratio?</summary><div class="a">It&#x27;s your monthly debt payments compared to your monthly income before taxes. It&#x27;s the main number used to figure out how much home you can qualify for.</div></details><details class="faq-item"><summary>Do I have to pay off a loan completely for it to stop counting?</summary><div class="a">Not always. On many conventional loans, an installment loan with 10 or fewer payments left may not have to be counted at all.</div></details><details class="faq-item"><summary>How are student loans counted when I apply for a mortgage?</summary><div class="a">If you&#x27;re making a regular payment, we generally use that. If your loans are deferred or show a $0 payment, we use half a percent or one percent of the balance, depending on the loan program.</div></details><details class="faq-item"><summary>I co-signed a loan for someone else. Does it count against me?</summary><div class="a">It doesn&#x27;t always have to. If the other person has made the payments on time for more than 12 months from their own account, it&#x27;s possible to leave that debt out of your calculation.</div></details><details class="faq-item"><summary>Does a co-signer have to live in the home?</summary><div class="a">No, but it helps. If your co-signer won&#x27;t live in the home, their own rent or mortgage gets counted in the debt calculation too.</div></details></section>
     <div class="endcta">
       <h2>Want to know which of your debts actually count?</h2>

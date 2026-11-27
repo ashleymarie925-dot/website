@@ -198,6 +198,52 @@ FOOTER = """<footer>
 </div>"""
 
 
+
+SUBSCRIBE = """
+<style>
+.subbox{margin:46px 0 10px;border:1px solid var(--gold);background:#17171c;padding:30px 26px}
+.subbox h2{font-size:28px;margin:6px 0 8px}
+.subbox p{color:var(--muted);margin:0 0 18px}
+.subbox form{display:grid;gap:12px}
+.subbox input{width:100%;padding:14px 14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit}
+.subbox input:focus{outline:none;border-color:var(--gold)}
+.subbox button{font-family:inherit;width:100%}
+.subbox .fine{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.subbox .done{display:none;text-align:center;color:var(--text);font-size:18px;padding:10px 0}
+</style>
+<div class="subbox" id="subscribe">
+  <div class="eyebrow">Never miss a post</div>
+  <h2>Get new posts sent to you</h2>
+  <p>Be the first to know when a new post goes up.</p>
+  <form id="subForm">
+    <input id="sub-name" type="text" placeholder="Your name" autocomplete="name" required>
+    <input id="sub-email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="sub-phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+    <button class="btn solid" id="sub-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="done" id="sub-done">You're in! I'll let you know when the next post is up.</div>
+  <p class="fine">By subscribing, you agree to receive emails and texts from Ashley Gurevich about new blog posts. Message and data rates may apply. You can unsubscribe at any time.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLScwnl34FcajwU1oKkafxSarTjSd-xzUxJhnD0NGu1-W3Mid_Q/formResponse';
+  var f=document.getElementById('subForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('sub-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.1899124695',document.getElementById('sub-name').value);
+    d.append('entry.1977497846',document.getElementById('sub-email').value);
+    d.append('entry.470970619',document.getElementById('sub-phone').value);
+    d.append('entry.534573983',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+"""
+
 def head(title, desc, url, og_type, image, schemas):
     blocks = "\n".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schemas)
     return f"""<!DOCTYPE html>
@@ -304,6 +350,7 @@ def render_post(p, posts):
   <article class="article">
     {answer}
     {body}
+    {SUBSCRIBE}
     {faq_html}
     <div class="endcta">
       <h2>{esc(p.get("cta_title","Let's map out your move."))}</h2>
@@ -357,6 +404,7 @@ def render_index(posts):
   <div class="cats">{btns}</div>
 </div></header>
 <div class="wrap"><div class="posts" id="posts">{cards}</div></div>
+<div class="wrap" style="max-width:720px">{SUBSCRIBE}</div>
 {FOOTER}
 <script>
 document.querySelectorAll('.cat').forEach(function(b){{b.onclick=function(){{

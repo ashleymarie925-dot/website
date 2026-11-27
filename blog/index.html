@@ -141,6 +141,50 @@ footer a{color:#8a867e}
   <div class="cats"><button class="cat on" data-c="all">All</button><button class="cat" data-c="Client Wins">Client Wins</button><button class="cat" data-c="Start Here">Start Here</button><button class="cat" data-c="What People Don&#x27;t Know">What People Don&#x27;t Know</button></div>
 </div></header>
 <div class="wrap"><div class="posts" id="posts"><a class="pcard feature" href="/blog/how-your-mortgage-approval-is-calculated" data-c="What People Don&#x27;t Know"><div class="eyebrow">What People Don&#x27;t Know</div><h2>What People Don&#x27;t Know About Buying a House: How Your Approval Is Calculated</h2><p>We don&#x27;t look at how much you owe. We look at your monthly payments. Here&#x27;s how your approval amount is really calculated, and the little-known ways a debt can stop counting against you.</p><div class="meta">November 26, 2026</div><div class="more">Read the post</div></a><a class="pcard" href="/blog/start-here-meet-ashley-gurevich" data-c="Start Here"><div class="eyebrow">Start Here</div><h2>New Here? Start Here: Meet Ashley Gurevich, Your Bay Area Loan Officer</h2><p>If you&#x27;re new here, welcome! Here&#x27;s who I am and how I help first-time buyers, move-up buyers, and business owners and 1099 earners get into their next home.</p><div class="meta">November 8, 2026</div><div class="more">Read the post</div></a><a class="pcard" href="/blog/buy-before-you-sell-bridge-loan-client-story" data-c="Client Wins"><div class="eyebrow">Client Wins</div><h2>How a Bridge Loan and a Bank Statement Loan Got My Clients Into Their Dream Home Before They Sold</h2><p>My clients owned a business, had a townhouse to sell, and found their dream home in the middle of the process. Here&#x27;s how a bank statement loan and a bridge loan got them the keys without a rushed sale.</p><div class="meta">October 31, 2026</div><div class="more">Read the post</div></a></div></div>
+<div class="wrap" style="max-width:720px">
+<style>
+.subbox{margin:46px 0 10px;border:1px solid var(--gold);background:#17171c;padding:30px 26px}
+.subbox h2{font-size:28px;margin:6px 0 8px}
+.subbox p{color:var(--muted);margin:0 0 18px}
+.subbox form{display:grid;gap:12px}
+.subbox input{width:100%;padding:14px 14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit}
+.subbox input:focus{outline:none;border-color:var(--gold)}
+.subbox button{font-family:inherit;width:100%}
+.subbox .fine{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.subbox .done{display:none;text-align:center;color:var(--text);font-size:18px;padding:10px 0}
+</style>
+<div class="subbox" id="subscribe">
+  <div class="eyebrow">Never miss a post</div>
+  <h2>Get new posts sent to you</h2>
+  <p>Be the first to know when a new post goes up.</p>
+  <form id="subForm">
+    <input id="sub-name" type="text" placeholder="Your name" autocomplete="name" required>
+    <input id="sub-email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="sub-phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+    <button class="btn solid" id="sub-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="done" id="sub-done">You're in! I'll let you know when the next post is up.</div>
+  <p class="fine">By subscribing, you agree to receive emails and texts from Ashley Gurevich about new blog posts. Message and data rates may apply. You can unsubscribe at any time.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLScwnl34FcajwU1oKkafxSarTjSd-xzUxJhnD0NGu1-W3Mid_Q/formResponse';
+  var f=document.getElementById('subForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('sub-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.1899124695',document.getElementById('sub-name').value);
+    d.append('entry.1977497846',document.getElementById('sub-email').value);
+    d.append('entry.470970619',document.getElementById('sub-phone').value);
+    d.append('entry.534573983',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-brand" style="margin-bottom:14px">Ashley Gurevich &middot; Senior Loan Officer &middot; NMLS #847540</div>

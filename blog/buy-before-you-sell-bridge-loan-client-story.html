@@ -238,6 +238,50 @@ footer a{color:#8a867e}
 <p>I've seen this go so many other ways. This is a much better way to do real estate.</p>
 </blockquote>
 <p>If you own a home and you've been wondering how you could ever buy the next one without selling first, or you're a business owner who's been told to wait and pay more in taxes before you can buy, let's talk. There's very likely a better path than the one you've been told about.</p>
+    
+<style>
+.subbox{margin:46px 0 10px;border:1px solid var(--gold);background:#17171c;padding:30px 26px}
+.subbox h2{font-size:28px;margin:6px 0 8px}
+.subbox p{color:var(--muted);margin:0 0 18px}
+.subbox form{display:grid;gap:12px}
+.subbox input{width:100%;padding:14px 14px;background:#0f0f12;border:1px solid #33333a;color:var(--text);font-size:16px;font-family:inherit}
+.subbox input:focus{outline:none;border-color:var(--gold)}
+.subbox button{font-family:inherit;width:100%}
+.subbox .fine{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.subbox .done{display:none;text-align:center;color:var(--text);font-size:18px;padding:10px 0}
+</style>
+<div class="subbox" id="subscribe">
+  <div class="eyebrow">Never miss a post</div>
+  <h2>Get new posts sent to you</h2>
+  <p>Be the first to know when a new post goes up.</p>
+  <form id="subForm">
+    <input id="sub-name" type="text" placeholder="Your name" autocomplete="name" required>
+    <input id="sub-email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="sub-phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+    <button class="btn solid" id="sub-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="done" id="sub-done">You're in! I'll let you know when the next post is up.</div>
+  <p class="fine">By subscribing, you agree to receive emails and texts from Ashley Gurevich about new blog posts. Message and data rates may apply. You can unsubscribe at any time.</p>
+</div>
+<script>
+(function(){
+  var F='https://docs.google.com/forms/d/e/1FAIpQLScwnl34FcajwU1oKkafxSarTjSd-xzUxJhnD0NGu1-W3Mid_Q/formResponse';
+  var f=document.getElementById('subForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('sub-btn'); b.textContent='Sending...';
+    var d=new FormData();
+    d.append('entry.1899124695',document.getElementById('sub-name').value);
+    d.append('entry.1977497846',document.getElementById('sub-email').value);
+    d.append('entry.470970619',document.getElementById('sub-phone').value);
+    d.append('entry.534573983',location.pathname);
+    fetch(F,{method:'POST',mode:'no-cors',body:d}).finally(function(){
+      f.style.display='none'; document.getElementById('sub-done').style.display='block';
+    });
+  });
+})();
+</script>
+
     <section class="faq" id="faq"><div class="eyebrow">Questions</div><h2 style="font-size:34px;margin:10px 0 20px">Straight answers</h2><details class="faq-item"><summary>Can I buy a new home before I sell my current one?</summary><div class="a">Often, yes. A bridge loan lets you use the equity in your current home toward the down payment on your next one, so you can buy first and sell after you&#x27;ve moved.</div></details><details class="faq-item"><summary>How long do I have to sell my old home with a bridge loan?</summary><div class="a">With the bridge loan I use, you have 4 months, with up to 2 extensions after that, to sell your previous home and pay off the bridge loan.</div></details><details class="faq-item"><summary>Do I make payments on the bridge loan?</summary><div class="a">With the bridge loan I use, there are no payments for the first 4 months. Every situation is different, so we&#x27;ll go over the exact terms for your scenario.</div></details><details class="faq-item"><summary>What is a bank statement loan?</summary><div class="a">It&#x27;s a way for self-employed borrowers to qualify using the deposits in their bank statements (12 months, in this client&#x27;s case) instead of the net income on their tax returns, which is often much lower after legitimate write-offs.</div></details><details class="faq-item"><summary>Does a bank statement loan cost more than a regular mortgage?</summary><div class="a">The rate is usually a little higher. But when you compare it side by side with the extra taxes you&#x27;d pay to report enough income to qualify the traditional way, the bank statement loan very often comes out ahead.</div></details><details class="faq-item"><summary>Do I need to stop taking write-offs to qualify for a mortgage?</summary><div class="a">Not necessarily. A bank statement loan is designed for business owners who follow their CPA&#x27;s tax strategy, so you don&#x27;t have to change how you file just to buy a home.</div></details></section>
     <div class="endcta">
       <h2>Wondering if this could work for you?</h2>
