@@ -90,7 +90,7 @@ nav{position:sticky;top:0;background:rgba(13,13,15,.92);backdrop-filter:blur(10p
 .byline{display:flex;align-items:center;gap:14px;margin-top:26px;font-size:13.5px;color:var(--muted)}
 .byline img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:top;border:1px solid var(--gold)}
 .byline b{color:var(--text);font-weight:500}
-.post-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;padding:44px 0 70px}
+.post-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;padding:44px 24px 70px}
 .answer{background:var(--card);border-left:3px solid var(--gold);padding:22px 26px;margin-bottom:34px}
 .answer .lbl{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .answer p{color:var(--text);font-size:16.5px;margin:0}
