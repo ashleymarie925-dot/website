@@ -6,7 +6,7 @@ category: What People Don't Know
 published: 2026-11-26
 description: "We don't look at how much you owe. We look at your monthly payments. Here's how your approval amount is really calculated, and the little-known ways a debt can stop counting against you."
 keywords: ["how mortgage approval is calculated", "debt-to-income ratio", "how much house can I afford", "student loans and mortgage", "co-signer mortgage", "first-time home buyer"]
-short_answer: "We don't use how much you owe. We use your monthly payments. Lower the payments we have to count, and your approval amount goes up."
+short_answer: "We don't use how much you owe. We use your monthly payments. If we can lower the monthly payments we have to count, your approval amount goes up."
 cta_title: "Want to know which of your debts actually count?"
 cta_text: "Send me a text and we'll look at your numbers together. We start with a soft pull only application, so it doesn't run your credit score."
 cta_button: "Text Ashley"
