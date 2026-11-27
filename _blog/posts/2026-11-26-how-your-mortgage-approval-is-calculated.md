@@ -62,8 +62,6 @@ Owing $30,000 on a car doesn't matter to your approval. The $500 monthly payment
 
 This is called your **debt-to-income ratio**. So if you'd like a higher approval amount, there are two ways to get there: add income, or lower the monthly debt we have to count.
 
-<div markdown="0" style="border:2px solid #D2A94E;padding:26px 22px;margin:40px 0;text-align:center"><p style="font-size:28px;font-weight:700;color:#F5F2E9;line-height:1.25;margin:0 0 12px;text-transform:uppercase;letter-spacing:.5px">But don't pay things off on your own without a game plan!</p><p style="margin:0;color:#c9c6bf;font-size:17px">There are little-known rules that can save you money. You don't want to spend your savings paying off debts that don't even count.</p></div>
-
 ## Way 1: Add income with a co-signer
 
 A co-signer's income can help balance out your monthly debt. Ideally it's someone who will live in the house with you.
@@ -75,6 +73,8 @@ If your co-signer won't be living there, we have to count their own rent or mort
 At today's rates, every $50 a month in debt payments is worth roughly $7,000 in loan amount. That adds up fast!
 
 And here's the fun part: there are a few ways a debt can stop counting **without being fully paid off**.
+
+<div markdown="0" style="border:2px solid #D2A94E;padding:26px 22px;margin:40px 0;text-align:center"><p style="font-size:28px;font-weight:700;color:#F5F2E9;line-height:1.25;margin:0 0 12px;text-transform:uppercase;letter-spacing:.5px">But don't pay things off on your own without a game plan!</p><p style="margin:0;color:#c9c6bf;font-size:17px">There are little-known rules that can save you money. You don't want to spend your savings paying off debts that don't even count.</p></div>
 
 ### The 10 payment rule
 
